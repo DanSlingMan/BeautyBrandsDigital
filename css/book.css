@@ -1,0 +1,269 @@
+/* ============================================================
+   book.css — Page-specific styles for book.html
+   ============================================================ */
+
+/* ── Page hero ───────────────────────────────────────────── */
+.book-hero {
+  padding-top: calc(68px + 64px);
+  padding-bottom: 64px;
+  background-color: var(--color-blush);
+  border-bottom: 1px solid var(--color-blush-mid);
+  text-align: center;
+}
+
+.book-hero h1 {
+  margin-bottom: 16px;
+}
+
+.book-hero p {
+  font-size: 1.125rem;
+  max-width: 520px;
+  margin-inline: auto;
+  margin-bottom: 0;
+}
+
+/* ── What to expect strip ────────────────────────────────── */
+.expect-strip {
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-blush-mid);
+  padding-block: 56px;
+}
+
+.expect-list {
+  display: grid;
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .expect-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.expect-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.expect-num {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--color-rose);
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.expect-copy h3 {
+  font-size: 1.125rem;
+  margin-bottom: 6px;
+  color: var(--color-charcoal);
+}
+
+.expect-copy p {
+  font-size: var(--text-sm);
+  color: var(--color-stone);
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+
+/* ── Booking section ─────────────────────────────────────── */
+.booking {
+  background-color: var(--color-ivory);
+}
+
+.booking-inner {
+  display: grid;
+  gap: 48px;
+}
+
+@media (min-width: 768px) {
+  .booking-inner {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+/* ── Deposit card ────────────────────────────────────────── */
+.deposit-card {
+  background-color: var(--color-white);
+  border: 2px solid var(--color-rose);
+  border-radius: var(--radius-md);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.deposit-card-eyebrow {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-rose);
+}
+
+.deposit-card h2 {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin-bottom: 0;
+}
+
+.deposit-amount {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.deposit-amount-figure {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  color: var(--color-charcoal);
+  line-height: 1;
+}
+
+.deposit-amount-note {
+  font-size: var(--text-sm);
+  color: var(--color-stone);
+}
+
+.deposit-card p {
+  font-size: var(--text-sm);
+  color: var(--color-stone);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.deposit-includes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.deposit-includes li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: var(--text-sm);
+  color: var(--color-stone);
+  line-height: 1.5;
+}
+
+.deposit-includes li::before {
+  content: '✓';
+  color: var(--color-rose);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* Stripe button */
+.stripe-btn {
+  width: 100%;
+  justify-content: center;
+  font-size: 1rem;
+  padding: 16px 32px;
+}
+
+.stripe-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--color-stone);
+  margin-top: 4px;
+  justify-content: center;
+}
+
+.stripe-badge svg {
+  opacity: 0.5;
+}
+
+/* Confirmation message — hidden by default */
+.booking-confirmation {
+  display: none;
+  background-color: var(--color-blush);
+  border: 1px solid var(--color-blush-mid);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  text-align: center;
+}
+
+.booking-confirmation.is-visible {
+  display: block;
+}
+
+.booking-confirmation h3 {
+  color: var(--color-rose);
+  margin-bottom: 12px;
+}
+
+.booking-confirmation p {
+  color: var(--color-stone);
+  margin-bottom: 0;
+}
+
+/* ── Cal.com embed column ────────────────────────────────── */
+.cal-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cal-column h3 {
+  font-size: 1.5rem;
+  color: var(--color-charcoal);
+}
+
+.cal-column p {
+  font-size: var(--text-sm);
+  color: var(--color-stone);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* Cal.com embed container */
+#cal-booking {
+  min-height: 500px;
+  background-color: var(--color-blush);
+  border: 1px solid var(--color-blush-mid);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px;
+  font-size: var(--text-sm);
+  color: var(--color-stone);
+  font-style: italic;
+}
+
+/* ── Contact alternative ─────────────────────────────────── */
+.contact-alt {
+  background-color: var(--color-blush);
+  padding-block: 64px;
+  text-align: center;
+}
+
+.contact-alt p {
+  font-size: 1rem;
+  color: var(--color-stone);
+  margin-bottom: 0;
+}
+
+.contact-alt a {
+  color: var(--color-rose);
+  font-weight: 500;
+  transition: opacity var(--transition-fast);
+}
+
+.contact-alt a:hover {
+  opacity: 0.75;
+}

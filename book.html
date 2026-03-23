@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Book your bridal makeup consultation with CLT Makeup. Secure your date with a $75 deposit — applied toward your package on your wedding day." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://cltmakeup.com/book.html" />
+  <meta property="og:title"       content="Book Your Consultation — CLT Makeup" />
+  <meta property="og:description" content="Reserve your wedding date with a $75 consultation deposit. Charlotte's luxury bridal makeup artist — CLT Makeup." />
+  <meta property="og:image"       content="https://cltmakeup.com/images/og-image.jpg" />
+
+  <title>Book Your Consultation — CLT Makeup</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/book.css" />
+
+  <!-- Stripe.js — loads asynchronously, no impact on page render -->
+  <script src="https://js.stripe.com/v3/" async></script>
+
+  <!-- Google Analytics 4 — replace GA_MEASUREMENT_ID -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script> -->
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       Navigation
+       ══════════════════════════════════════════════════════ -->
+  <header class="site-nav" role="banner">
+    <div class="container">
+      <div class="nav-inner">
+
+        <a href="index.html" class="nav-logo" aria-label="CLT Makeup — home">
+          CLT <span>MAKEUP</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+          <a href="book.html" class="btn btn-primary" aria-current="page">Book Now</a>
+        </nav>
+
+        <button
+          class="nav-hamburger"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-drawer"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+    </div>
+
+    <nav class="nav-drawer" id="mobile-drawer" aria-label="Mobile navigation">
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="book.html">Book Now</a>
+    </nav>
+  </header>
+
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         Page Hero
+         ══════════════════════════════════════════════════════ -->
+    <section class="book-hero" aria-label="Booking page header">
+      <div class="container">
+        <span class="section-eyebrow reveal">Let's Make It Official</span>
+        <h1 class="reveal">Book your consultation.</h1>
+        <p class="reveal">
+          Your wedding date is waiting. Secure it with a $75 consultation deposit
+          and we'll start building your perfect bridal look together.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         What to expect strip
+         ══════════════════════════════════════════════════════ -->
+    <section class="expect-strip" aria-labelledby="expect-heading">
+      <div class="container">
+
+        <div class="section-header reveal" style="margin-bottom: 40px;">
+          <span class="section-eyebrow">The Process</span>
+          <h2 id="expect-heading" style="font-size: 1.75rem;">What happens after you book</h2>
+        </div>
+
+        <ul class="expect-list reveal-stagger">
+
+          <li class="expect-item reveal">
+            <div class="expect-num" aria-hidden="true">1</div>
+            <div class="expect-copy">
+              <h3>Pay your deposit</h3>
+              <p>
+                A $75 consultation deposit secures your date and is applied in
+                full toward your package on your wedding day.
+              </p>
+            </div>
+          </li>
+
+          <li class="expect-item reveal">
+            <div class="expect-num" aria-hidden="true">2</div>
+            <div class="expect-copy">
+              <h3>Consultation call</h3>
+              <p>
+                We'll connect over a 20-minute call to talk through your vision,
+                skin concerns, wedding aesthetic, and timeline.
+              </p>
+            </div>
+          </li>
+
+          <li class="expect-item reveal">
+            <div class="expect-num" aria-hidden="true">3</div>
+            <div class="expect-copy">
+              <h3>Your trial & wedding day</h3>
+              <p>
+                We'll do your trial session to perfect the look, then I'll be
+                there on your wedding morning — calm, ready, and excited for you.
+              </p>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         Booking: Deposit + Cal.com embed
+         ══════════════════════════════════════════════════════ -->
+    <section class="booking section" aria-labelledby="booking-heading">
+      <div class="container">
+
+        <div class="booking-inner">
+
+          <!-- ── Left: Deposit card + Stripe ── -->
+          <div class="reveal">
+
+            <div class="deposit-card">
+              <p class="deposit-card-eyebrow">Step 1 — Reserve Your Date</p>
+              <h2 id="booking-heading">Consultation Deposit</h2>
+
+              <div class="deposit-amount">
+                <span class="deposit-amount-figure">$75</span>
+                <span class="deposit-amount-note">applied toward your package</span>
+              </div>
+
+              <p>
+                This deposit holds your wedding date and confirms your spot on
+                my calendar. It is fully applied toward the cost of whichever
+                package you choose — it's not an extra fee.
+              </p>
+
+              <ul class="deposit-includes">
+                <li>Date hold on my calendar</li>
+                <li>20-minute consultation call</li>
+                <li>Applied in full toward your bridal package</li>
+                <li>Booking confirmation sent to your email</li>
+              </ul>
+
+              <!-- Stripe Checkout button -->
+              <button
+                id="stripe-checkout-btn"
+                class="btn btn-primary stripe-btn"
+                type="button"
+              >
+                Pay $75 Deposit Securely
+              </button>
+
+              <p class="stripe-badge">
+                <!-- Lock icon -->
+                <svg width="12" height="14" viewBox="0 0 12 14" fill="none" aria-hidden="true">
+                  <rect x="2" y="6" width="8" height="7" rx="1" stroke="currentColor" stroke-width="1.2"/>
+                  <path d="M4 6V4a2 2 0 1 1 4 0v2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                </svg>
+                Secured by Stripe — we never store your card details
+              </p>
+            </div>
+
+            <!-- Confirmation message — shown after successful payment -->
+            <div
+              class="booking-confirmation"
+              id="booking-confirmation"
+              role="alert"
+              aria-live="polite"
+            >
+              <h3>You're booked! 🎉</h3>
+              <p>
+                Check your email for details and next steps. I can't wait to
+                work with you on your wedding look!
+              </p>
+            </div>
+
+          </div>
+
+          <!-- ── Right: Cal.com embed ── -->
+          <div class="cal-column reveal">
+            <h3>Step 2 — Pick Your Consultation Time</h3>
+            <p>
+              Once your deposit is paid, choose a time for our 20-minute
+              consultation call below.
+            </p>
+
+            <!--
+              Cal.com inline embed
+              Replace "your-cal-username" with your actual Cal.com username.
+              Full setup docs: https://cal.com/docs/embedding/inline-embed
+            -->
+            <div id="cal-booking">
+              Cal.com scheduling embed will appear here.<br /><br />
+              Replace the placeholder script below with your Cal.com embed code.
+            </div>
+
+            <!--
+              Cal.com embed script — uncomment and replace username when ready:
+
+              <script type="text/javascript">
+                (function (C, A, L) {
+                  let p = function (a, ar) { a.q.push(ar); };
+                  let d = C.document;
+                  C.Cal = C.Cal || function () {
+                    let cal = C.Cal;
+                    let ar = arguments;
+                    if (!cal.loaded) {
+                      cal.ns = {};
+                      cal.q = cal.q || [];
+                      d.head.appendChild(d.createElement("script")).src = A;
+                      cal.loaded = true;
+                    }
+                    if (ar[0] === L) {
+                      const api = function () { p(api, arguments); };
+                      const namespace = ar[1];
+                      api.q = api.q || [];
+                      typeof namespace === "string"
+                        ? (cal.ns[namespace] = api) && p(api, ar)
+                        : p(cal, ar);
+                      return;
+                    }
+                    p(cal, ar);
+                  };
+                })(window, "https://app.cal.com/embed/embed.js", "init");
+
+                Cal("init", { origin: "https://app.cal.com" });
+
+                Cal("inline", {
+                  elementOrSelector: "#cal-booking",
+                  calLink: "your-cal-username/consultation", // Replace with your Cal.com link
+                  layout: "month_view"
+                });
+
+                Cal("ui", {
+                  styles: { branding: { brandColor: "#D4537E" } },
+                  hideEventTypeDetails: false,
+                });
+              </script>
+            -->
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         Contact alternative
+         ══════════════════════════════════════════════════════ -->
+    <section class="contact-alt" aria-label="Direct contact option">
+      <div class="container">
+        <p class="reveal">
+          Prefer to reach out directly?
+          Email <a href="mailto:hello@cltmakeup.com">hello@cltmakeup.com</a>
+          and I'll get back to you within 24 hours.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       Footer
+       ══════════════════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-brand">
+          <p class="footer-logo">CLT <span>MAKEUP</span></p>
+          <p class="footer-tagline">
+            Charlotte's luxury bridal makeup artist.<br />
+            cltmakeup.com
+          </p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+          <a href="book.html">Book Now</a>
+        </nav>
+
+        <div class="footer-social">
+          <a href="https://instagram.com/cltmakeup"  target="_blank" rel="noopener noreferrer">Instagram @cltmakeup</a>
+          <a href="https://tiktok.com/@cltmakeup"    target="_blank" rel="noopener noreferrer">TikTok @cltmakeup</a>
+          <a href="https://pinterest.com/cltmakeup"  target="_blank" rel="noopener noreferrer">Pinterest @cltmakeup</a>
+          <a href="mailto:hello@cltmakeup.com">hello@cltmakeup.com</a>
+        </div>
+
+      </div>
+
+      <p class="footer-bottom">
+        &copy; CLT Makeup 2026 &mdash; Charlotte, NC &mdash; All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/nav.js"></script>
+  <script src="js/reveal.js"></script>
+  <script src="js/book.js"></script>
+
+</body>
+</html>
