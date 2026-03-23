@@ -1,0 +1,346 @@
+/* ============================================================
+   home.css — Page-specific styles for index.html
+   ============================================================ */
+
+/* ── Hero ────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: 68px; /* nav height offset */
+  overflow: hidden;
+}
+
+/* Full-bleed background placeholder */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 0;
+  z-index: 0;
+  background-color: var(--color-blush);
+  font-size: var(--text-sm);
+  color: var(--color-stone);
+}
+
+/* Rose-to-transparent gradient overlay */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(250, 248, 245, 0.90) 0%,
+    rgba(251, 234, 240, 0.70) 50%,
+    rgba(212, 83, 126, 0.10) 100%
+  );
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  max-width: 680px;
+  padding-block: 80px;
+}
+
+.hero-headline {
+  font-size: var(--text-h1);
+  color: var(--color-charcoal);
+  margin-bottom: 24px;
+  line-height: 1.08;
+}
+
+.hero-headline em {
+  font-style: italic;
+  color: var(--color-rose);
+}
+
+.hero-sub {
+  font-size: 1.125rem;
+  color: var(--color-stone);
+  max-width: 480px;
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Stagger hero reveals */
+.hero-content .section-eyebrow { transition-delay: 0ms; }
+.hero-content .hero-headline    { transition-delay: 100ms; }
+.hero-content .hero-sub         { transition-delay: 200ms; }
+.hero-content .hero-actions     { transition-delay: 320ms; }
+
+/* ── Intro Strip ─────────────────────────────────────────── */
+.intro-strip {
+  background-color: var(--color-white);
+  border-top: 1px solid var(--color-blush-mid);
+  border-bottom: 1px solid var(--color-blush-mid);
+  padding-block: 56px;
+}
+
+.intro-strip-list {
+  display: grid;
+  gap: 40px;
+}
+
+@media (min-width: 768px) {
+  .intro-strip-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+.intro-strip-item {
+  text-align: center;
+}
+
+.intro-icon {
+  font-size: 1.5rem;
+  color: var(--color-rose);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.intro-label {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: var(--color-charcoal);
+}
+
+.intro-desc {
+  font-size: var(--text-sm);
+  color: var(--color-stone);
+  max-width: 240px;
+  margin-inline: auto;
+  margin-bottom: 0;
+  line-height: 1.65;
+}
+
+/* ── Services Teaser ─────────────────────────────────────── */
+.services-teaser {
+  background-color: var(--color-ivory);
+}
+
+.services-grid {
+  display: grid;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.service-card-icon {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.service-card-name {
+  font-size: 1.375rem;
+  color: var(--color-charcoal);
+}
+
+.service-card-desc {
+  flex: 1;
+  font-size: var(--text-sm);
+  color: var(--color-stone);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.service-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-rose);
+  transition: gap var(--transition-fast);
+  margin-top: 8px;
+}
+
+.service-card-link:hover {
+  gap: 10px;
+}
+
+/* ── About Teaser ────────────────────────────────────────── */
+.about-teaser {
+  background-color: var(--color-blush);
+}
+
+.about-teaser-inner {
+  display: grid;
+  gap: 48px;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .about-teaser-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gutter-desktop);
+  }
+}
+
+.about-headshot {
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  border-radius: var(--radius-lg);
+}
+
+.about-teaser-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.about-teaser-copy h2 {
+  line-height: 1.15;
+}
+
+.about-teaser-copy p {
+  margin-bottom: 0;
+}
+
+/* ── Testimonials ────────────────────────────────────────── */
+.testimonials {
+  background-color: var(--color-blush);
+}
+
+.testimonials-grid {
+  display: grid;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.testimonial-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-blush-mid);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  box-shadow: var(--shadow-card);
+}
+
+.testimonial-quote {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-style: italic;
+  color: var(--color-charcoal);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.testimonial-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.testimonial-name {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  font-style: normal;
+  color: var(--color-rose);
+}
+
+.testimonial-venue {
+  font-size: var(--text-sm);
+  color: var(--color-stone);
+}
+
+/* ── Instagram Strip ─────────────────────────────────────── */
+.instagram-strip {
+  background-color: var(--color-ivory);
+}
+
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+  .instagram-grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+  }
+}
+
+.instagram-item a {
+  display: block;
+}
+
+.instagram-img {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.instagram-item a:hover .instagram-img {
+  opacity: 0.85;
+  transform: scale(1.02);
+}
+
+.instagram-cta {
+  text-align: center;
+}
+
+/* ── CTA Banner ──────────────────────────────────────────── */
+.cta-banner {
+  background-color: var(--color-rose);
+  padding-block: var(--section-pad-mobile);
+}
+
+@media (min-width: 768px) {
+  .cta-banner {
+    padding-block: var(--section-pad-desktop);
+  }
+}
+
+.cta-banner-inner {
+  text-align: center;
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.cta-banner-headline {
+  font-size: var(--text-h2);
+  color: var(--color-white);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.cta-banner-headline em {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.cta-banner-sub {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.0625rem;
+  margin-bottom: 36px;
+  line-height: 1.7;
+}

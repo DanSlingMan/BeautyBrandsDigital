@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CLT Makeup — Charlotte's luxury bridal makeup artist. Elevating brides across Charlotte, NC and surrounding areas. Book your consultation today." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://cltmakeup.com/" />
+  <meta property="og:title"       content="CLT Makeup — Charlotte's Luxury Bridal Makeup Artist" />
+  <meta property="og:description" content="Luxury bridal makeup for Charlotte brides. Flawless looks, personal service, and an experience as beautiful as your wedding day." />
+  <meta property="og:image"       content="https://cltmakeup.com/images/og-image.jpg" />
+
+  <title>CLT Makeup — Charlotte's Luxury Bridal Makeup Artist</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/home.css" />
+
+  <!-- Google Analytics 4 — replace GA_MEASUREMENT_ID -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script> -->
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 1: Navigation
+       ══════════════════════════════════════════════════════ -->
+  <header class="site-nav" role="banner">
+    <div class="container">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="/" class="nav-logo" aria-label="CLT Makeup — home">
+          CLT <span>MAKEUP</span>
+        </a>
+
+        <!-- Desktop links -->
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+          <a href="book.html" class="btn btn-primary">Book Now</a>
+        </nav>
+
+        <!-- Mobile hamburger -->
+        <button
+          class="nav-hamburger"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-drawer"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <nav class="nav-drawer" id="mobile-drawer" aria-label="Mobile navigation">
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="book.html">Book Now</a>
+    </nav>
+  </header>
+
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 2: Hero
+         ══════════════════════════════════════════════════════ -->
+    <section class="hero" aria-label="Hero">
+      <!-- Blush gradient overlay -->
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <!-- Hero image placeholder — replace with real photo -->
+      <div class="hero-bg img-placeholder" aria-hidden="true">
+        Hero image: bride in soft natural light, editorial close-up
+      </div>
+
+      <div class="container">
+        <div class="hero-content">
+          <p class="section-eyebrow reveal">Charlotte, NC</p>
+          <h1 class="hero-headline reveal">
+            Your wedding day.<br />
+            <em>Perfected.</em>
+          </h1>
+          <p class="hero-sub reveal">
+            Charlotte's luxury bridal makeup artist — crafting effortless,
+            camera-ready looks that feel entirely like you.
+          </p>
+          <div class="hero-actions reveal">
+            <a href="book.html" class="btn btn-primary">Book Your Consultation</a>
+            <a href="services.html" class="btn btn-outline">View Services</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 3: Intro strip — 3 brand pillars
+         ══════════════════════════════════════════════════════ -->
+    <section class="intro-strip" aria-label="Brand highlights">
+      <div class="container">
+        <ul class="intro-strip-list reveal-stagger">
+
+          <li class="intro-strip-item reveal">
+            <div class="intro-icon" aria-hidden="true">✦</div>
+            <h3 class="intro-label">Luxury Experience</h3>
+            <p class="intro-desc">
+              Every detail is curated — from your trial to your walk down the aisle.
+            </p>
+          </li>
+
+          <li class="intro-strip-item reveal">
+            <div class="intro-icon" aria-hidden="true">✦</div>
+            <h3 class="intro-label">Charlotte-Based</h3>
+            <p class="intro-desc">
+              Serving Charlotte and the surrounding region with on-location availability.
+            </p>
+          </li>
+
+          <li class="intro-strip-item reveal">
+            <div class="intro-icon" aria-hidden="true">✦</div>
+            <h3 class="intro-label">Trial Included</h3>
+            <p class="intro-desc">
+              A full trial session so you see your look before the big day.
+            </p>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 4: Services teaser — 3 cards
+         ══════════════════════════════════════════════════════ -->
+    <section class="services-teaser section" aria-labelledby="services-heading">
+      <div class="container">
+
+        <div class="section-header reveal">
+          <span class="section-eyebrow">What I Offer</span>
+          <h2 id="services-heading">Made for your moment</h2>
+          <hr class="divider" />
+        </div>
+
+        <ul class="services-grid reveal-stagger">
+
+          <li class="card service-card reveal">
+            <div class="service-card-icon" aria-hidden="true">💐</div>
+            <h3 class="service-card-name">Bridal Package</h3>
+            <p class="service-card-desc">
+              Full-glam artistry for the bride, including a touch-up kit to keep you
+              luminous all evening.
+            </p>
+            <a href="services.html" class="service-card-link">
+              Learn more <span aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="card service-card reveal">
+            <div class="service-card-icon" aria-hidden="true">🌸</div>
+            <h3 class="service-card-name">Bridal Party</h3>
+            <p class="service-card-desc">
+              Coordinated, cohesive looks for your whole crew — bridesmaids, mother of
+              the bride, and more.
+            </p>
+            <a href="services.html" class="service-card-link">
+              Learn more <span aria-hidden="true">→</span>
+            </a>
+          </li>
+
+          <li class="card service-card reveal">
+            <div class="service-card-icon" aria-hidden="true">🪞</div>
+            <h3 class="service-card-name">Trial Session</h3>
+            <p class="service-card-desc">
+              Two hours at my studio to dial in your perfect look before the wedding day
+              arrives.
+            </p>
+            <a href="services.html" class="service-card-link">
+              Learn more <span aria-hidden="true">→</span>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 5: About teaser
+         ══════════════════════════════════════════════════════ -->
+    <section class="about-teaser section" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="about-teaser-inner">
+
+          <!-- Headshot placeholder -->
+          <div class="about-teaser-image reveal">
+            <div
+              class="img-placeholder about-headshot"
+              role="img"
+              aria-label="Artist headshot — a warm, editorial portrait"
+            >
+              Artist headshot<br />editorial portrait
+            </div>
+          </div>
+
+          <!-- Bio copy -->
+          <div class="about-teaser-copy reveal">
+            <span class="section-eyebrow">The Artist</span>
+            <h2 id="about-heading">Beauty rooted in Charlotte.</h2>
+            <hr class="divider" style="margin-inline: 0;" />
+            <p>
+              I'm a Charlotte-based bridal makeup artist with over a decade of
+              experience creating looks that photograph beautifully and feel
+              effortlessly like you. My studio is in the heart of Charlotte, and
+              I travel throughout the surrounding region for weddings.
+            </p>
+            <p>
+              My philosophy is simple: your wedding makeup should enhance who you
+              already are — never mask it. Every bride I work with leaves feeling
+              confident, radiant, and completely herself.
+            </p>
+            <a href="about.html" class="btn btn-outline">Meet the Artist</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 6: Testimonials
+         ══════════════════════════════════════════════════════ -->
+    <section class="testimonials section" aria-labelledby="testimonials-heading">
+      <div class="container">
+
+        <div class="section-header reveal">
+          <span class="section-eyebrow">Bride Love</span>
+          <h2 id="testimonials-heading">Words from our brides</h2>
+          <hr class="divider" />
+        </div>
+
+        <ul class="testimonials-grid reveal-stagger">
+
+          <li class="testimonial-card reveal">
+            <blockquote>
+              <p class="testimonial-quote">
+                "I cried when I saw myself in the mirror — happy tears. She understood
+                exactly what I wanted and made it look even better than I imagined.
+                Every photo is stunning."
+              </p>
+              <footer class="testimonial-footer">
+                <cite class="testimonial-name">— Gabrielle M., married October 2025</cite>
+                <span class="testimonial-venue">The Asbury, Charlotte NC</span>
+              </footer>
+            </blockquote>
+          </li>
+
+          <li class="testimonial-card reveal">
+            <blockquote>
+              <p class="testimonial-quote">
+                "From the trial to the wedding morning, the experience was completely
+                stress-free. My bridesmaids still talk about how beautiful everyone
+                looked. Absolutely worth every penny."
+              </p>
+              <footer class="testimonial-footer">
+                <cite class="testimonial-name">— Priya S., married June 2025</cite>
+                <span class="testimonial-venue">Separk Mansion, Gastonia NC</span>
+              </footer>
+            </blockquote>
+          </li>
+
+          <li class="testimonial-card reveal">
+            <blockquote>
+              <p class="testimonial-quote">
+                "I have sensitive skin and was nervous about heavy makeup. She used the
+                most beautiful products and my skin looked flawless for 12 hours. I
+                felt like myself — just elevated."
+              </p>
+              <footer class="testimonial-footer">
+                <cite class="testimonial-name">— Sarah K., married March 2025</cite>
+                <span class="testimonial-venue">The Bradford, Matthews NC</span>
+              </footer>
+            </blockquote>
+          </li>
+
+        </ul>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 7: Instagram strip
+         ══════════════════════════════════════════════════════ -->
+    <section class="instagram-strip section" aria-labelledby="instagram-heading">
+      <div class="container">
+
+        <div class="section-header reveal">
+          <span class="section-eyebrow">@cltmakeup</span>
+          <h2 id="instagram-heading">Follow along</h2>
+          <hr class="divider" />
+        </div>
+
+        <!-- 6 placeholder image boxes -->
+        <ul class="instagram-grid reveal-stagger" aria-label="Instagram feed preview">
+          <li class="instagram-item reveal">
+            <a
+              href="https://instagram.com/cltmakeup"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View @cltmakeup on Instagram"
+            >
+              <div
+                class="img-placeholder instagram-img"
+                role="img"
+                aria-label="Instagram post — bridal glam look"
+              >
+                @cltmakeup
+              </div>
+            </a>
+          </li>
+          <li class="instagram-item reveal">
+            <a href="https://instagram.com/cltmakeup" target="_blank" rel="noopener noreferrer" aria-label="View @cltmakeup on Instagram">
+              <div class="img-placeholder instagram-img" role="img" aria-label="Instagram post — soft romantic eye look">@cltmakeup</div>
+            </a>
+          </li>
+          <li class="instagram-item reveal">
+            <a href="https://instagram.com/cltmakeup" target="_blank" rel="noopener noreferrer" aria-label="View @cltmakeup on Instagram">
+              <div class="img-placeholder instagram-img" role="img" aria-label="Instagram post — bride getting ready detail">@cltmakeup</div>
+            </a>
+          </li>
+          <li class="instagram-item reveal">
+            <a href="https://instagram.com/cltmakeup" target="_blank" rel="noopener noreferrer" aria-label="View @cltmakeup on Instagram">
+              <div class="img-placeholder instagram-img" role="img" aria-label="Instagram post — editorial bridal portrait">@cltmakeup</div>
+            </a>
+          </li>
+          <li class="instagram-item reveal">
+            <a href="https://instagram.com/cltmakeup" target="_blank" rel="noopener noreferrer" aria-label="View @cltmakeup on Instagram">
+              <div class="img-placeholder instagram-img" role="img" aria-label="Instagram post — bridesmaids group look">@cltmakeup</div>
+            </a>
+          </li>
+          <li class="instagram-item reveal">
+            <a href="https://instagram.com/cltmakeup" target="_blank" rel="noopener noreferrer" aria-label="View @cltmakeup on Instagram">
+              <div class="img-placeholder instagram-img" role="img" aria-label="Instagram post — makeup flat lay detail">@cltmakeup</div>
+            </a>
+          </li>
+        </ul>
+
+        <div class="instagram-cta reveal">
+          <a
+            href="https://instagram.com/cltmakeup"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+          >
+            Follow @cltmakeup
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 8: CTA Banner
+         ══════════════════════════════════════════════════════ -->
+    <section class="cta-banner" aria-label="Booking call to action">
+      <div class="container">
+        <div class="cta-banner-inner reveal">
+          <h2 class="cta-banner-headline">
+            Ready to book your<br /><em>bridal look?</em>
+          </h2>
+          <p class="cta-banner-sub">
+            Spots fill up fast — especially for spring and fall weddings.
+            Secure your date with a $75 consultation deposit.
+          </p>
+          <a href="book.html" class="btn btn-ghost">Book Your Consultation</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       SECTION 9: Footer
+       ══════════════════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+
+        <!-- Brand column -->
+        <div class="footer-brand">
+          <p class="footer-logo">CLT <span>MAKEUP</span></p>
+          <p class="footer-tagline">
+            Charlotte's luxury bridal makeup artist.<br />
+            cltmakeup.com
+          </p>
+        </div>
+
+        <!-- Nav column -->
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+          <a href="book.html">Book Now</a>
+        </nav>
+
+        <!-- Social column -->
+        <div class="footer-social">
+          <a href="https://instagram.com/cltmakeup"  target="_blank" rel="noopener noreferrer">Instagram @cltmakeup</a>
+          <a href="https://tiktok.com/@cltmakeup"    target="_blank" rel="noopener noreferrer">TikTok @cltmakeup</a>
+          <a href="https://pinterest.com/cltmakeup"  target="_blank" rel="noopener noreferrer">Pinterest @cltmakeup</a>
+          <a href="mailto:hello@cltmakeup.com">hello@cltmakeup.com</a>
+        </div>
+
+      </div>
+
+      <!-- Bottom bar -->
+      <p class="footer-bottom">
+        &copy; CLT Makeup 2026 &mdash; Charlotte, NC &mdash; All rights reserved.
+      </p>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/nav.js"></script>
+  <script src="js/reveal.js"></script>
+
+</body>
+</html>
