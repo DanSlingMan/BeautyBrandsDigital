@@ -1,11 +1,12 @@
 /* ============================================================
    book.css — Page-specific styles for book.html
+   Square Appointments booking system
    ============================================================ */
 
-/* ── Page hero ───────────────────────────────────────────── */
+/* ── Page Hero ───────────────────────────────────────────── */
 .book-hero {
   padding-top: calc(68px + 64px);
-  padding-bottom: 64px;
+  padding-bottom: 72px;
   background-color: var(--color-blush);
   border-bottom: 1px solid var(--color-blush-mid);
   text-align: center;
@@ -20,248 +21,174 @@
   max-width: 520px;
   margin-inline: auto;
   margin-bottom: 0;
+  color: var(--color-stone);
 }
 
-/* ── What to expect strip ────────────────────────────────── */
-.expect-strip {
+/* ── Info Chips Strip ────────────────────────────────────── */
+.chips-strip {
   background-color: var(--color-white);
   border-bottom: 1px solid var(--color-blush-mid);
-  padding-block: 56px;
+  padding-block: 40px;
 }
 
-.expect-list {
-  display: grid;
-  gap: 32px;
+.chips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 @media (min-width: 768px) {
-  .expect-list {
-    grid-template-columns: repeat(3, 1fr);
+  .chips-list {
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 20px;
   }
 }
 
-.expect-item {
+/* Individual chip card */
+.chip {
   display: flex;
-  gap: 16px;
+  align-items: flex-start;
+  gap: 10px;
+  background-color: var(--color-blush);
+  border: 1px solid var(--color-blush-mid);
+  border-radius: 100px;
+  padding: 14px 20px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-charcoal);
+  line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+  .chip {
+    flex: 1;
+    max-width: 320px;
+    border-radius: 16px;
+    padding: 18px 22px;
+    align-items: center;
+  }
+}
+
+.chip-check {
+  color: var(--color-rose);
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+/* ── Square Appointments Section ─────────────────────────── */
+.square-section {
+  background-color: var(--color-ivory);
+}
+
+/* Square widget wrapper — exact spec from brief */
+#square-appointments {
+  width: 100%;
+  min-height: 700px;
+  background: var(--color-ivory);
+  border: 1px solid var(--color-blush-mid);
+  border-radius: 12px;
+  padding: 24px;
+  overflow: hidden;
+}
+
+/* ── What Happens Next — Steps ───────────────────────────── */
+.steps-section {
+  background-color: var(--color-white);
+  border-top: 1px solid var(--color-blush-mid);
+  padding-block: 80px;
+}
+
+@media (min-width: 768px) {
+  .steps-section {
+    padding-block: 120px;
+  }
+}
+
+.steps-list {
+  display: grid;
+  gap: 36px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  .steps-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px 56px;
+  }
+}
+
+/* Individual step */
+.step-item {
+  display: flex;
+  gap: 20px;
   align-items: flex-start;
 }
 
-.expect-num {
+/* Rose numbered circle */
+.step-num {
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: var(--color-rose);
   color: var(--color-white);
   font-family: var(--font-heading);
-  font-size: 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 2px;
 }
 
-.expect-copy h3 {
-  font-size: 1.125rem;
-  margin-bottom: 6px;
-  color: var(--color-charcoal);
-}
-
-.expect-copy p {
-  font-size: var(--text-sm);
-  color: var(--color-stone);
-  line-height: 1.65;
-  margin-bottom: 0;
-}
-
-/* ── Booking section ─────────────────────────────────────── */
-.booking {
-  background-color: var(--color-ivory);
-}
-
-.booking-inner {
-  display: grid;
-  gap: 48px;
-}
-
-@media (min-width: 768px) {
-  .booking-inner {
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-  }
-}
-
-/* ── Deposit card ────────────────────────────────────────── */
-.deposit-card {
-  background-color: var(--color-white);
-  border: 2px solid var(--color-rose);
-  border-radius: var(--radius-md);
-  padding: 36px 32px;
-  box-shadow: var(--shadow-soft);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.deposit-card-eyebrow {
-  font-size: var(--text-sm);
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-rose);
-}
-
-.deposit-card h2 {
-  font-size: 2rem;
-  line-height: 1.2;
-  margin-bottom: 0;
-}
-
-.deposit-amount {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-}
-
-.deposit-amount-figure {
+.step-copy h3 {
   font-family: var(--font-heading);
-  font-size: 3rem;
+  font-size: 1.25rem;
   color: var(--color-charcoal);
-  line-height: 1;
+  margin-bottom: 8px;
+  line-height: 1.3;
 }
 
-.deposit-amount-note {
-  font-size: var(--text-sm);
-  color: var(--color-stone);
-}
-
-.deposit-card p {
+.step-copy p {
   font-size: var(--text-sm);
   color: var(--color-stone);
   line-height: 1.7;
   margin-bottom: 0;
 }
 
-.deposit-includes {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.deposit-includes li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: var(--text-sm);
-  color: var(--color-stone);
-  line-height: 1.5;
-}
-
-.deposit-includes li::before {
-  content: '✓';
-  color: var(--color-rose);
-  font-weight: 600;
-  flex-shrink: 0;
-}
-
-/* Stripe button */
-.stripe-btn {
-  width: 100%;
-  justify-content: center;
-  font-size: 1rem;
-  padding: 16px 32px;
-}
-
-.stripe-badge {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.75rem;
-  color: var(--color-stone);
-  margin-top: 4px;
-  justify-content: center;
-}
-
-.stripe-badge svg {
-  opacity: 0.5;
-}
-
-/* Confirmation message — hidden by default */
-.booking-confirmation {
-  display: none;
-  background-color: var(--color-blush);
-  border: 1px solid var(--color-blush-mid);
-  border-radius: var(--radius-md);
-  padding: 32px;
-  text-align: center;
-}
-
-.booking-confirmation.is-visible {
-  display: block;
-}
-
-.booking-confirmation h3 {
-  color: var(--color-rose);
-  margin-bottom: 12px;
-}
-
-.booking-confirmation p {
-  color: var(--color-stone);
-  margin-bottom: 0;
-}
-
-/* ── Cal.com embed column ────────────────────────────────── */
-.cal-column {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.cal-column h3 {
-  font-size: 1.5rem;
-  color: var(--color-charcoal);
-}
-
-.cal-column p {
-  font-size: var(--text-sm);
-  color: var(--color-stone);
-  line-height: 1.7;
-  margin-bottom: 0;
-}
-
-/* Cal.com embed container */
-#cal-booking {
-  min-height: 500px;
-  background-color: var(--color-blush);
-  border: 1px solid var(--color-blush-mid);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 32px;
-  font-size: var(--text-sm);
-  color: var(--color-stone);
-  font-style: italic;
-}
-
-/* ── Contact alternative ─────────────────────────────────── */
+/* ── Contact Alternative ─────────────────────────────────── */
 .contact-alt {
   background-color: var(--color-blush);
-  padding-block: 64px;
+  padding-block: 72px;
   text-align: center;
+  border-top: 1px solid var(--color-blush-mid);
 }
 
 .contact-alt p {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: var(--color-stone);
+  line-height: 1.8;
   margin-bottom: 0;
 }
 
 .contact-alt a {
   color: var(--color-rose);
   font-weight: 500;
+  font-size: 1.125rem;
   transition: opacity var(--transition-fast);
+  text-decoration: none;
 }
 
 .contact-alt a:hover {
