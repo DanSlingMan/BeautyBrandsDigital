@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/home.css" />
+  <link rel="stylesheet" href="css/marquee.css" />
 
   <!-- Google Analytics 4 — replace GA_MEASUREMENT_ID -->
   <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
@@ -85,34 +86,46 @@
 
   <main>
 
-    <!-- ══════════════════════════════════════════════════════
-         SECTION 2: Hero
-         ══════════════════════════════════════════════════════ -->
-    <section class="hero" aria-label="Hero">
-      <!-- Blush gradient overlay -->
-      <div class="hero-overlay" aria-hidden="true"></div>
-
-      <!-- Hero image placeholder — replace with real photo -->
-      <div class="hero-bg img-placeholder" aria-hidden="true">
-        Hero image: bride in soft natural light, editorial close-up
+    <!-- ══ HERO MARQUEE ══ -->
+    <section class="hero-marquee" aria-label="Bridal portfolio showcase">
+      <div class="marquee-track">
+        <!-- Set 1 -->
+        <img src="images/hero/hero-01.jpg" alt="Bridal beauty close-up with natural makeup" class="marquee-img" loading="eager" />
+        <img src="images/hero/hero-02.jpg" alt="Bride with floral crown and bouquet" class="marquee-img" loading="eager" />
+        <img src="images/hero/hero-03.jpg" alt="Bride in veil with elegant eye makeup" class="marquee-img" loading="eager" />
+        <img src="images/hero/hero-04.jpg" alt="Bride smiling by window in lace gown" class="marquee-img" loading="eager" />
+        <img src="images/hero/hero-05.jpg" alt="Bride in off-shoulder gown with garden backdrop" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-06.jpg" alt="Bridal party getting ready in matching robes" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-07.jpg" alt="Bride with golden light and soft waves" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-08.jpg" alt="Bride posing during getting-ready photoshoot" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-09.jpg" alt="Wedding couple sharing an intimate moment" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-10.jpg" alt="Bride with tulle sleeves and earrings" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-11.jpg" alt="Couple embracing with joyful smiles" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-12.jpg" alt="Bridal portrait in cream dress with soft makeup" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-13.jpg" alt="Close-up of engagement ring and bridal jewelry" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-14.jpg" alt="Bride profile with baby's breath hair piece" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-15.jpg" alt="Smiling bride with red hair and smoky eye makeup" class="marquee-img" loading="lazy" />
+        <!-- Set 2 (duplicate for seamless infinite loop) -->
+        <img src="images/hero/hero-01.jpg" alt="Bridal beauty close-up with natural makeup" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-02.jpg" alt="Bride with floral crown and bouquet" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-03.jpg" alt="Bride in veil with elegant eye makeup" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-04.jpg" alt="Bride smiling by window in lace gown" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-05.jpg" alt="Bride in off-shoulder gown with garden backdrop" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-06.jpg" alt="Bridal party getting ready in matching robes" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-07.jpg" alt="Bride with golden light and soft waves" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-08.jpg" alt="Bride posing during getting-ready photoshoot" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-09.jpg" alt="Wedding couple sharing an intimate moment" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-10.jpg" alt="Bride with tulle sleeves and earrings" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-11.jpg" alt="Couple embracing with joyful smiles" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-12.jpg" alt="Bridal portrait in cream dress with soft makeup" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-13.jpg" alt="Close-up of engagement ring and bridal jewelry" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-14.jpg" alt="Bride profile with baby's breath hair piece" class="marquee-img" loading="lazy" />
+        <img src="images/hero/hero-15.jpg" alt="Smiling bride with red hair and smoky eye makeup" class="marquee-img" loading="lazy" />
       </div>
-
-      <div class="container">
-        <div class="hero-content">
-          <p class="section-eyebrow reveal">Charlotte, NC</p>
-          <h1 class="hero-headline reveal">
-            Your wedding day.<br />
-            <em>Perfected.</em>
-          </h1>
-          <p class="hero-sub reveal">
-            Charlotte's luxury bridal makeup artist — crafting effortless,
-            camera-ready looks that feel entirely like you.
-          </p>
-          <div class="hero-actions reveal">
-            <a href="book.html" class="btn btn-primary">Book Your Consultation</a>
-            <a href="services.html" class="btn btn-outline">View Services</a>
-          </div>
-        </div>
+      <div class="hero-overlay">
+        <h1>Your wedding day. <em>Perfected.</em></h1>
+        <p class="hero-sub">Charlotte&rsquo;s luxury bridal makeup artist</p>
+        <a href="book.html" class="btn btn-light">Book Your Look</a>
       </div>
     </section>
 
