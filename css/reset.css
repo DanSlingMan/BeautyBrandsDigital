@@ -1,0 +1,51 @@
+/* ============================================================
+   reset.css — Minimal CSS reset for CLT Makeup
+   ============================================================ */
+
+/* Box-sizing: include padding & border in element widths */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove default list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remove default link underlines and inherit color */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Make images responsive and block-level */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Remove button default styles */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base font size and antialiasing */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Book your bridal makeup appointment with CLT Makeup. Reserve your date with a $75 deposit — applied toward your package on your wedding day." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://cltmakeup.com/book.html" />
+  <meta property="og:title"       content="Book Your Bridal Experience — CLT Makeup" />
+  <meta property="og:description" content="Reserve your wedding date with a $75 deposit via Square. Charlotte's luxury bridal makeup artist — CLT Makeup." />
+  <meta property="og:image"       content="https://cltmakeup.com/images/og-image.jpg" />
+
+  <title>Book Your Bridal Experience — CLT Makeup</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/book.css" />
+
+  <!-- Google Analytics 4 — replace GA_MEASUREMENT_ID -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script> -->
+</head>
+
+<body>
+
+  <!-- Square Appointments widget syncs with Miriam's Google Calendar. Availability updates in real time. $75 deposit required at booking. Non-refundable within 48 hours. -->
+
+  <!-- ══════════════════════════════════════════════════════
+       Navigation
+       ══════════════════════════════════════════════════════ -->
+  <header class="site-nav" role="banner">
+    <div class="container">
+      <div class="nav-inner">
+
+        <a href="index.html" class="nav-logo" aria-label="CLT Makeup — home">
+          CLT <span>MAKEUP</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+          <a href="book.html" class="btn btn-primary" aria-current="page">Book Now</a>
+        </nav>
+
+        <button
+          class="nav-hamburger"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-drawer"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+    </div>
+
+    <nav class="nav-drawer" id="mobile-drawer" aria-label="Mobile navigation">
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="book.html">Book Now</a>
+    </nav>
+  </header>
+
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 1 — Page Hero
+         ══════════════════════════════════════════════════════ -->
+    <section class="book-hero" aria-label="Booking page header">
+      <div class="container">
+        <span class="section-eyebrow reveal">Reserve Your Date</span>
+        <h1 class="reveal">Book Your Bridal Experience</h1>
+        <p class="reveal">
+          Reserve your date with a $75 deposit — applied to your
+          total on the day of your appointment.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 2 — Three Info Chips
+         ══════════════════════════════════════════════════════ -->
+    <section class="chips-strip" aria-label="Booking details">
+      <div class="container">
+        <ul class="chips-list">
+
+          <li class="chip reveal">
+            <span class="chip-check" aria-hidden="true">✓</span>
+            <span>$75 deposit today — applied to your package</span>
+          </li>
+
+          <li class="chip reveal">
+            <span class="chip-check" aria-hidden="true">✓</span>
+            <span>Instant confirmation sent to your email</span>
+          </li>
+
+          <li class="chip reveal">
+            <span class="chip-check" aria-hidden="true">✓</span>
+            <span>Cancellations must be made 48 hours in advance</span>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 3 — Square Appointments Booking Widget
+         ══════════════════════════════════════════════════════ -->
+    <section class="square-section section" aria-labelledby="square-heading">
+      <div class="container">
+
+        <div class="section-header reveal" style="text-align: center; margin-bottom: 48px;">
+          <span class="section-eyebrow">Availability Updated in Real Time</span>
+          <h2 id="square-heading">Choose Your Date &amp; Service</h2>
+        </div>
+
+        <!-- Square Appointments embed wrapper -->
+        <div id="square-appointments" class="reveal">
+          <!-- Start Square Appointments Embed Code -->
+          <script src='https://app.squareup.com/appointments/buyer/widget/75osb248riwlwc/LGKJV87PVQ78Q.js'></script>
+          <!-- End Square Appointments Embed Code -->
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 4 — What Happens Next (4 Steps)
+         ══════════════════════════════════════════════════════ -->
+    <section class="steps-section" aria-labelledby="steps-heading">
+      <div class="container">
+
+        <div class="section-header reveal" style="text-align: center; margin-bottom: 48px;">
+          <span class="section-eyebrow">The Process</span>
+          <h2 id="steps-heading">What happens next</h2>
+        </div>
+
+        <ol class="steps-list">
+
+          <li class="step-item reveal">
+            <div class="step-num" aria-hidden="true">1</div>
+            <div class="step-copy">
+              <h3>Choose your service and date</h3>
+              <p>
+                Browse available times directly in the widget above.
+                Select the service that matches your vision — from
+                Bridal Package to Trial Session.
+              </p>
+            </div>
+          </li>
+
+          <li class="step-item reveal">
+            <div class="step-num" aria-hidden="true">2</div>
+            <div class="step-copy">
+              <h3>Pay your $75 deposit securely via Square</h3>
+              <p>
+                Your deposit is processed safely through Square.
+                It's not an extra charge — it applies in full
+                toward your package on the day of your appointment.
+              </p>
+            </div>
+          </li>
+
+          <li class="step-item reveal">
+            <div class="step-num" aria-hidden="true">3</div>
+            <div class="step-copy">
+              <h3>Receive instant email confirmation</h3>
+              <p>
+                You'll get a booking confirmation straight to your
+                inbox with all your appointment details, what to
+                expect, and how to prepare.
+              </p>
+            </div>
+          </li>
+
+          <li class="step-item reveal">
+            <div class="step-num" aria-hidden="true">4</div>
+            <div class="step-copy">
+              <h3>Miriam will reach out within 24 hours</h3>
+              <p>
+                Expect a personal message from Miriam to start
+                the conversation about your vision, skin concerns,
+                wedding aesthetic, and day-of timeline.
+              </p>
+            </div>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         SECTION 5 — Contact Alternative
+         ══════════════════════════════════════════════════════ -->
+    <section class="contact-alt" aria-label="Direct contact option">
+      <div class="container">
+        <p class="reveal">
+          Prefer to reach out directly?<br />
+          <a href="mailto:hello@cltmakeup.com">hello@cltmakeup.com</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       Footer
+       ══════════════════════════════════════════════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-brand">
+          <p class="footer-logo">CLT <span>MAKEUP</span></p>
+          <p class="footer-tagline">
+            Charlotte's luxury bridal makeup artist.<br />
+            cltmakeup.com
+          </p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+          <a href="book.html">Book Now</a>
+        </nav>
+
+        <div class="footer-social">
+          <a href="https://instagram.com/cltmakeup"  target="_blank" rel="noopener noreferrer">Instagram @cltmakeup</a>
+          <a href="https://tiktok.com/@cltmakeup"    target="_blank" rel="noopener noreferrer">TikTok @cltmakeup</a>
+          <a href="https://pinterest.com/cltmakeup"  target="_blank" rel="noopener noreferrer">Pinterest @cltmakeup</a>
+          <a href="mailto:hello@cltmakeup.com">hello@cltmakeup.com</a>
+        </div>
+
+      </div>
+
+      <p class="footer-bottom">
+        &copy; CLT Makeup 2026 &mdash; Charlotte, NC &mdash; All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/nav.js"></script>
+  <script src="js/reveal.js"></script>
+
+</body>
+</html>

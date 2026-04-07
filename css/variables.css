@@ -1,0 +1,63 @@
+/* ============================================================
+   variables.css — All CSS custom properties for CLT Makeup
+   ============================================================ */
+
+:root {
+
+  /* ── Colors ────────────────────────────────────────────── */
+  --color-rose:       #D4537E;   /* primary — headings, CTAs, accents */
+  --color-blush:      #FBEAF0;   /* light backgrounds, section fills   */
+  --color-blush-mid:  #F4C0D1;   /* borders, dividers                  */
+  --color-ivory:      #FAF8F5;   /* page background                    */
+  --color-charcoal:   #2C2C2A;   /* body text                          */
+  --color-stone:      #5F5E5A;   /* secondary text                     */
+  --color-white:      #FFFFFF;
+
+  /* ── Typography ─────────────────────────────────────────── */
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+
+  /* Font sizes — mobile base */
+  --text-h1:   4rem;    /* 64px */
+  --text-h2:   2.5rem;  /* 40px */
+  --text-h3:   1.75rem; /* 28px */
+  --text-body: 1rem;    /* 16px */
+  --text-sm:   0.875rem;/* 14px */
+
+  --leading-body:    1.75;
+  --tracking-heading: 0.02em;
+
+  /* ── Spacing ─────────────────────────────────────────────── */
+  --section-pad-mobile:  80px;
+  --section-pad-desktop: 120px;
+  --max-width:           1200px;
+  --gutter-mobile:       24px;
+  --gutter-desktop:      40px;
+
+  /* ── Borders & Radii ─────────────────────────────────────── */
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  24px;
+  --radius-pill: 999px;
+
+  /* ── Shadows ─────────────────────────────────────────────── */
+  --shadow-soft: 0 4px 24px rgba(212, 83, 126, 0.10);
+  --shadow-card: 0 2px 16px rgba(44, 44, 42, 0.08);
+
+  /* ── Transitions ─────────────────────────────────────────── */
+  --transition-fast:   0.2s ease;
+  --transition-reveal: 0.7s ease-out;
+
+  /* ── Z-index scale ───────────────────────────────────────── */
+  --z-nav:     100;
+  --z-overlay: 200;
+}
+
+/* ── Desktop overrides ───────────────────────────────────── */
+@media (min-width: 768px) {
+  :root {
+    --text-h1: 5rem;    /* 80px */
+    --text-h2: 3.25rem; /* 52px */
+    --text-h3: 2rem;    /* 32px */
+  }
+}

@@ -1,0 +1,114 @@
+/* ══════════════════════════════════════════════
+   HERO MARQUEE — scrolling bridal image strip
+   ══════════════════════════════════════════════ */
+
+.hero-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: var(--color-charcoal);
+}
+
+.hero-marquee::before,
+.hero-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+.hero-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-charcoal) 0%, transparent 100%);
+}
+.hero-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-charcoal) 0%, transparent 100%);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 6px;
+  width: max-content;
+  animation: marquee-scroll 90s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-img {
+  display: block;
+  height: 340px;
+  width: auto;
+  max-width: none;
+  object-fit: cover;
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 40px 24px 52px;
+  background: linear-gradient(to bottom,
+    var(--color-charcoal) 0%,
+    rgba(44, 44, 42, 0.95) 30%,
+    rgba(44, 44, 42, 0.88) 100%
+  );
+}
+
+.hero-overlay h1 {
+  font-family: var(--font-heading, 'Cormorant Garamond', serif);
+  font-weight: 300;
+  font-size: 40px;
+  letter-spacing: 0.03em;
+  color: var(--color-white);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.hero-overlay h1 em {
+  font-style: italic;
+  color: var(--color-blush-mid);
+}
+
+.hero-overlay .hero-sub {
+  font-family: var(--font-body, 'DM Sans', sans-serif);
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-blush-mid);
+  margin-bottom: 28px;
+}
+
+.hero-overlay .btn-light {
+  background: var(--color-blush);
+  color: var(--color-charcoal);
+}
+.hero-overlay .btn-light:hover {
+  background: var(--color-white);
+}
+
+@media (min-width: 768px) {
+  .hero-marquee::before,
+  .hero-marquee::after { width: 120px; }
+  .marquee-img { height: 480px; }
+  .marquee-track { gap: 8px; }
+  .hero-overlay { padding: 56px 40px 68px; }
+  .hero-overlay h1 { font-size: 64px; }
+  .hero-overlay .hero-sub { font-size: 15px; margin-bottom: 36px; }
+}
+
+@media (min-width: 1024px) {
+  .hero-overlay h1 { font-size: 76px; }
+  .marquee-img { height: 520px; }
+}

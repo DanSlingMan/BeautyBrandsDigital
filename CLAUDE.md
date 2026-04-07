@@ -62,15 +62,21 @@ cltmakeup/
 ├── services.html          ← services page
 ├── about.html             ← about page
 ├── book.html              ← booking + payment page
+├── pictures.html          ← hidden photo manager (password-protected)
 ├── css/
 │   ├── reset.css          ← minimal CSS reset
 │   ├── variables.css      ← all CSS custom properties
-│   └── main.css           ← global styles (nav, footer, typography, buttons)
+│   ├── main.css           ← global styles (nav, footer, typography, buttons)
+│   └── marquee.css        ← hero marquee scrolling styles
 ├── js/
 │   ├── reveal.js          ← scroll-triggered fade-in reveals
 │   └── nav.js             ← mobile hamburger menu
-└── images/
-    └── README.md          ← placeholder — real photos go here
+├── images/
+│   ├── hero/              ← marquee hero images (hero-01.jpg through hero-15.jpg)
+│   └── README.md          ← placeholder — real photos go here
+└── netlify/
+    └── functions/
+        └── upload.js      ← serverless function for GitHub image uploads
 ```
 
 ## Pages — Content & Requirements
