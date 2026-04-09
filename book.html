@@ -1,273 +1,911 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Book your bridal makeup appointment with CLT Makeup. Reserve your date with a $75 deposit — applied toward your package on your wedding day." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Book your luxury bridal makeup experience with CLT Makeup in Charlotte, NC. Secure your date with a 50% deposit.">
+  <meta property="og:title" content="Book — CLT Makeup">
+  <meta property="og:description" content="Book your luxury bridal makeup experience in Charlotte, NC.">
+  <title>Book — CLT Makeup | Charlotte's Luxury Bridal Makeup Artist</title>
 
-  <!-- Open Graph -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://cltmakeup.com/book.html" />
-  <meta property="og:title"       content="Book Your Bridal Experience — CLT Makeup" />
-  <meta property="og:description" content="Reserve your wedding date with a $75 deposit via Square. Charlotte's luxury bridal makeup artist — CLT Makeup." />
-  <meta property="og:image"       content="https://cltmakeup.com/images/og-image.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
-  <title>Book Your Bridal Experience — CLT Makeup</title>
+  <!-- Square Web Payments SDK -->
+  <script src="https://web.squarecdn.com/v1/square.js"></script>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@400;500&display=swap"
-    rel="stylesheet"
-  />
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    /* ══ BOOKING PAGE STYLES ══ */
+    .book-hero {
+      text-align: center;
+      padding: 56px 24px 40px;
+      background: var(--color-charcoal);
+    }
+    .book-hero h1 {
+      font-family: var(--font-heading, 'Cormorant Garamond', serif);
+      font-weight: 300;
+      font-size: 38px;
+      color: var(--color-white);
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+    }
+    .book-hero h1 em {
+      font-style: italic;
+      color: var(--color-blush-mid);
+    }
+    .book-hero p {
+      font-size: 14px;
+      color: var(--color-blush-mid);
+      letter-spacing: 0.06em;
+    }
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/main.css" />
-  <link rel="stylesheet" href="css/book.css" />
+    @media (min-width: 768px) {
+      .book-hero { padding: 72px 40px 52px; }
+      .book-hero h1 { font-size: 56px; }
+    }
 
-  <!-- Google Analytics 4 — replace GA_MEASUREMENT_ID -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'GA_MEASUREMENT_ID');
-  </script> -->
+    /* ── Progress Steps ── */
+    .progress-bar {
+      display: flex;
+      justify-content: center;
+      padding: 32px 24px 24px;
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-blush);
+    }
+    .step-indicator { display: flex; align-items: center; }
+    .step { display: flex; align-items: center; gap: 10px; }
+    .step-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 600;
+      border: 1.5px solid var(--color-blush-mid);
+      color: var(--color-stone); background: var(--color-white);
+      transition: all 0.35s ease; flex-shrink: 0;
+    }
+    .step-label {
+      font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--color-stone);
+      transition: color 0.35s ease; display: none;
+    }
+    .step.active .step-num { background: var(--color-rose); border-color: var(--color-rose); color: var(--color-white); }
+    .step.active .step-label { color: var(--color-charcoal); }
+    .step.completed .step-num { background: var(--color-charcoal); border-color: var(--color-charcoal); color: var(--color-white); }
+    .step-line {
+      width: 40px; height: 1.5px; background: var(--color-blush-mid);
+      margin: 0 8px; transition: background 0.35s ease;
+    }
+    .step-line.active { background: var(--color-charcoal); }
+
+    @media (min-width: 768px) {
+      .step-label { display: block; }
+      .step-line { width: 60px; }
+    }
+
+    /* ── Booking Container ── */
+    .booking-container {
+      max-width: 720px; margin: 0 auto; padding: 0 24px 80px;
+    }
+    .booking-step {
+      display: none; padding-top: 36px;
+      animation: fadeUp 0.4s ease-out;
+    }
+    .booking-step.active { display: block; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-title {
+      font-family: var(--font-heading, 'Cormorant Garamond', serif);
+      font-size: 30px; font-weight: 400; color: var(--color-charcoal); margin-bottom: 6px;
+    }
+    .step-subtitle { font-size: 15px; color: var(--color-stone); margin-bottom: 28px; }
+
+    @media (min-width: 768px) { .step-title { font-size: 36px; } }
+
+    /* ── Service Cards ── */
+    .service-options { display: flex; flex-direction: column; gap: 16px; }
+    .service-option {
+      display: flex; align-items: flex-start; gap: 16px; padding: 24px;
+      background: var(--color-white); border: 1.5px solid var(--color-blush-mid);
+      cursor: pointer; transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+    }
+    .service-option:hover { border-color: #e8a0b8; box-shadow: 0 4px 20px rgba(212,83,126,0.06); }
+    .service-option.selected { border-color: var(--color-rose); box-shadow: 0 4px 24px rgba(212,83,126,0.1); }
+    .service-radio {
+      width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--color-blush-mid);
+      flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.25s ease;
+    }
+    .service-radio::after {
+      content: ''; width: 10px; height: 10px; border-radius: 50%;
+      background: var(--color-rose); transform: scale(0); transition: transform 0.2s ease;
+    }
+    .service-option.selected .service-radio { border-color: var(--color-rose); }
+    .service-option.selected .service-radio::after { transform: scale(1); }
+    .service-info { flex: 1; }
+    .service-info h3 {
+      font-family: var(--font-heading, 'Cormorant Garamond', serif);
+      font-size: 22px; font-weight: 500; color: var(--color-charcoal); margin-bottom: 2px;
+    }
+    .service-info .service-price {
+      font-family: var(--font-heading, 'Cormorant Garamond', serif);
+      font-size: 20px; font-weight: 300; color: var(--color-rose); margin-bottom: 6px;
+    }
+    .service-info p { font-size: 14px; color: var(--color-stone); line-height: 1.5; }
+    .service-tag {
+      position: absolute; top: -1px; right: 20px; background: var(--color-rose);
+      color: var(--color-white); font-size: 10px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px 5px;
+    }
+
+    /* Party size input */
+    .party-size-row {
+      display: none; margin-top: 16px; padding: 20px 24px;
+      background: var(--color-blush); border-left: 3px solid var(--color-rose);
+    }
+    .party-size-row.visible { display: flex; align-items: center; gap: 12px; }
+    .party-size-row label {
+      font-size: 14px; font-weight: 500; color: var(--color-charcoal);
+    }
+    .party-size-row input {
+      width: 70px; padding: 10px 12px; font-family: var(--font-body, 'DM Sans', sans-serif);
+      font-size: 15px; border: 1.5px solid var(--color-blush-mid);
+      background: var(--color-white); text-align: center; outline: none;
+    }
+    .party-size-row input:focus { border-color: var(--color-rose); }
+    .party-size-note { font-size: 13px; color: var(--color-stone); }
+
+    /* ── Calendar ── */
+    .calendar-wrapper {
+      background: var(--color-white); border: 1px solid var(--color-blush-mid);
+      padding: 24px; margin-bottom: 24px;
+    }
+    .cal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .cal-month {
+      font-family: var(--font-heading, 'Cormorant Garamond', serif);
+      font-size: 24px; font-weight: 400; color: var(--color-charcoal);
+    }
+    .cal-nav { display: flex; gap: 8px; }
+    .cal-nav button {
+      width: 36px; height: 36px; border: 1px solid var(--color-blush-mid);
+      background: var(--color-white); cursor: pointer; display: flex;
+      align-items: center; justify-content: center; color: var(--color-charcoal);
+      font-size: 16px; transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .cal-nav button:hover { border-color: var(--color-rose); background: var(--color-blush); }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+    .cal-day-label {
+      text-align: center; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-stone); padding: 8px 0;
+    }
+    .cal-day {
+      text-align: center; padding: 10px 0; font-size: 14px; cursor: pointer;
+      border-radius: 2px; transition: background 0.2s ease, color 0.2s ease; color: var(--color-charcoal);
+    }
+    .cal-day:hover:not(.disabled):not(.empty) { background: var(--color-blush); }
+    .cal-day.selected { background: var(--color-rose); color: var(--color-white); font-weight: 600; }
+    .cal-day.today { border: 1px solid #e8a0b8; }
+    .cal-day.disabled { color: var(--color-blush-mid); cursor: default; }
+    .cal-day.empty { cursor: default; }
+
+    /* ── Time Slots ── */
+    .time-section { margin-top: 8px; }
+    .time-label {
+      font-family: var(--font-heading, 'Cormorant Garamond', serif);
+      font-size: 20px; font-weight: 400; color: var(--color-charcoal); margin-bottom: 12px;
+    }
+    .time-loading { text-align: center; padding: 24px; color: var(--color-stone); font-size: 14px; }
+    .time-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .time-slot {
+      padding: 12px 8px; text-align: center; font-size: 14px; font-weight: 500;
+      border: 1.5px solid var(--color-blush-mid); background: var(--color-white);
+      cursor: pointer; transition: all 0.2s ease; color: var(--color-charcoal);
+    }
+    .time-slot:hover:not(.unavailable) { border-color: #e8a0b8; background: var(--color-blush); }
+    .time-slot.selected { border-color: var(--color-rose); background: var(--color-rose); color: var(--color-white); }
+    .time-slot.unavailable {
+      color: var(--color-blush-mid); border-color: var(--color-blush);
+      cursor: default; text-decoration: line-through;
+    }
+
+    @media (min-width: 768px) { .time-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    /* ── Form Fields ── */
+    .form-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media (min-width: 768px) { .form-row-2 { grid-template-columns: 1fr 1fr; } }
+    .form-group label {
+      display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--color-stone); margin-bottom: 6px;
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 14px 16px; font-family: var(--font-body, 'DM Sans', sans-serif);
+      font-size: 15px; border: 1.5px solid var(--color-blush-mid);
+      background: var(--color-white); color: var(--color-charcoal); outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--color-rose); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--color-stone); opacity: 0.5; }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    /* ── Review Card ── */
+    .review-card {
+      background: var(--color-white); border: 1px solid var(--color-blush-mid);
+      padding: 32px; margin-bottom: 24px;
+    }
+    .review-card h3 {
+      font-family: var(--font-heading, 'Cormorant Garamond', serif);
+      font-size: 22px; font-weight: 400; color: var(--color-charcoal);
+      margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--color-blush);
+    }
+    .review-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; }
+    .review-label {
+      font-size: 13px; font-weight: 500; letter-spacing: 0.04em;
+      text-transform: uppercase; color: var(--color-stone);
+    }
+    .review-value { font-size: 15px; color: var(--color-charcoal); text-align: right; }
+    .review-divider { height: 1px; background: var(--color-blush); margin: 16px 0; }
+    .review-total { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0 0; }
+    .review-total .review-label { font-size: 14px; color: var(--color-charcoal); font-weight: 600; }
+    .review-total .review-value {
+      font-family: var(--font-heading, 'Cormorant Garamond', serif);
+      font-size: 28px; font-weight: 400; color: var(--color-rose);
+    }
+
+    /* ── Payment Card Input ── */
+    .payment-section { margin-bottom: 24px; }
+    .payment-section h3 {
+      font-family: var(--font-heading, 'Cormorant Garamond', serif);
+      font-size: 22px; font-weight: 400; margin-bottom: 16px;
+    }
+    #card-container {
+      min-height: 90px; padding: 16px;
+      border: 1.5px solid var(--color-blush-mid);
+      background: var(--color-white); transition: border-color 0.2s ease;
+    }
+    #card-container:focus-within { border-color: var(--color-rose); }
+
+    .deposit-note {
+      background: var(--color-blush); padding: 16px 20px; margin-bottom: 24px;
+      font-size: 14px; color: var(--color-charcoal);
+      border-left: 3px solid var(--color-rose); line-height: 1.5;
+    }
+    .deposit-note strong { color: var(--color-rose); }
+
+    .payment-error {
+      display: none; margin-top: 12px; padding: 12px 16px;
+      background: #fef2f2; border-left: 3px solid #E53935;
+      font-size: 14px; color: #b71c1c;
+    }
+
+    /* ── Confirmation ── */
+    .confirmation { text-align: center; padding: 48px 0; }
+    .confirm-icon {
+      width: 72px; height: 72px; border-radius: 50%; background: var(--color-blush);
+      margin: 0 auto 24px; display: flex; align-items: center; justify-content: center;
+    }
+    .confirm-icon svg { width: 36px; height: 36px; stroke: #5a9a6e; fill: none; stroke-width: 2; }
+    .confirmation h2 {
+      font-family: var(--font-heading, 'Cormorant Garamond', serif);
+      font-size: 36px; font-weight: 300; color: var(--color-charcoal); margin-bottom: 8px;
+    }
+    .confirmation h2 em { font-style: italic; color: var(--color-rose); }
+    .confirmation p { font-size: 15px; color: var(--color-stone); max-width: 440px; margin: 0 auto 16px; }
+    .confirm-details {
+      max-width: 400px; margin: 24px auto 0; text-align: left;
+      background: var(--color-white); border: 1px solid var(--color-blush-mid); padding: 24px;
+    }
+    .confirm-details .review-row { padding: 6px 0; }
+
+    /* ── Buttons ── */
+    .btn-row { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; gap: 16px; }
+    .btn-book {
+      font-family: var(--font-body, 'DM Sans', sans-serif);
+      font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 14px 36px; border: none; cursor: pointer; transition: all 0.25s ease;
+    }
+    .btn-book.primary { background: var(--color-rose); color: var(--color-white); }
+    .btn-book.primary:hover { background: #b94069; transform: scale(1.02); }
+    .btn-book.primary:disabled { background: var(--color-blush-mid); cursor: not-allowed; transform: none; }
+    .btn-book.back {
+      background: none; color: var(--color-stone); padding: 14px 20px;
+      border: 1.5px solid var(--color-blush-mid);
+    }
+    .btn-book.back:hover { border-color: var(--color-stone); }
+    .btn-book.pay {
+      background: var(--color-charcoal); color: var(--color-white);
+      padding: 16px 44px; font-size: 14px; width: 100%;
+    }
+    .btn-book.pay:hover { background: #1a1a18; }
+    .btn-book.pay:disabled { background: var(--color-stone); cursor: not-allowed; }
+
+    .spinner-inline {
+      display: inline-block; width: 14px; height: 14px;
+      border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff;
+      border-radius: 50%; animation: spin 0.6s linear infinite;
+      vertical-align: middle; margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
 </head>
-
 <body>
 
-  <!-- Square Appointments widget syncs with Miriam's Google Calendar. Availability updates in real time. $75 deposit required at booking. Non-refundable within 48 hours. -->
+  <!-- Nav is loaded from the existing site nav structure -->
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">CLT <span>MAKEUP</span></a>
+      <nav class="nav-links">
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="book.html" class="btn btn-primary">Book Now</a>
+      </nav>
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-menu">
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="book.html">Book Now</a>
+  </div>
 
-  <!-- ══════════════════════════════════════════════════════
-       Navigation
-       ══════════════════════════════════════════════════════ -->
-  <header class="site-nav" role="banner">
-    <div class="container">
-      <div class="nav-inner">
+  <main>
+    <!-- Hero -->
+    <div class="book-hero">
+      <h1>Book Your <em>Bridal Experience</em></h1>
+      <p>Select your service, pick a date, and secure your look</p>
+    </div>
 
-        <a href="index.html" class="nav-logo" aria-label="CLT Makeup — home">
-          CLT <span>MAKEUP</span>
-        </a>
-
-        <nav class="nav-links" aria-label="Primary navigation">
-          <a href="services.html">Services</a>
-          <a href="about.html">About</a>
-          <a href="book.html" class="btn btn-primary" aria-current="page">Book Now</a>
-        </nav>
-
-        <button
-          class="nav-hamburger"
-          aria-label="Open navigation menu"
-          aria-expanded="false"
-          aria-controls="mobile-drawer"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
+    <!-- Progress -->
+    <div class="progress-bar" id="progressBar">
+      <div class="step-indicator">
+        <div class="step active" data-step="1">
+          <div class="step-num">1</div><div class="step-label">Service</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step="2">
+          <div class="step-num">2</div><div class="step-label">Date & Time</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step="3">
+          <div class="step-num">3</div><div class="step-label">Details</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step="4">
+          <div class="step-num">4</div><div class="step-label">Review & Pay</div>
+        </div>
       </div>
     </div>
 
-    <nav class="nav-drawer" id="mobile-drawer" aria-label="Mobile navigation">
-      <a href="services.html">Services</a>
-      <a href="about.html">About</a>
-      <a href="book.html">Book Now</a>
-    </nav>
-  </header>
+    <div class="booking-container">
 
-
-  <main>
-
-    <!-- ══════════════════════════════════════════════════════
-         SECTION 1 — Page Hero
-         ══════════════════════════════════════════════════════ -->
-    <section class="book-hero" aria-label="Booking page header">
-      <div class="container">
-        <span class="section-eyebrow reveal">Reserve Your Date</span>
-        <h1 class="reveal">Book Your Bridal Experience</h1>
-        <p class="reveal">
-          Reserve your date with a $75 deposit — applied to your
-          total on the day of your appointment.
-        </p>
-      </div>
-    </section>
-
-
-    <!-- ══════════════════════════════════════════════════════
-         SECTION 2 — Three Info Chips
-         ══════════════════════════════════════════════════════ -->
-    <section class="chips-strip" aria-label="Booking details">
-      <div class="container">
-        <ul class="chips-list">
-
-          <li class="chip reveal">
-            <span class="chip-check" aria-hidden="true">✓</span>
-            <span>$75 deposit today — applied to your package</span>
-          </li>
-
-          <li class="chip reveal">
-            <span class="chip-check" aria-hidden="true">✓</span>
-            <span>Instant confirmation sent to your email</span>
-          </li>
-
-          <li class="chip reveal">
-            <span class="chip-check" aria-hidden="true">✓</span>
-            <span>Cancellations must be made 48 hours in advance</span>
-          </li>
-
-        </ul>
-      </div>
-    </section>
-
-
-    <!-- ══════════════════════════════════════════════════════
-         SECTION 3 — Square Appointments Booking Widget
-         ══════════════════════════════════════════════════════ -->
-    <section class="square-section section" aria-labelledby="square-heading">
-      <div class="container">
-
-        <div class="section-header reveal" style="text-align: center; margin-bottom: 48px;">
-          <span class="section-eyebrow">Availability Updated in Real Time</span>
-          <h2 id="square-heading">Choose Your Date &amp; Service</h2>
+      <!-- STEP 1: Service -->
+      <div class="booking-step active" id="step1">
+        <h2 class="step-title">Choose Your Service</h2>
+        <p class="step-subtitle">Every booking includes a personalized consultation</p>
+        <div class="service-options">
+          <div class="service-option" data-service="bridal" data-price="250">
+            <div class="service-radio"></div>
+            <div class="service-info">
+              <h3>Bridal Package</h3>
+              <div class="service-price">$250</div>
+              <p>Full bridal glam — includes a curated touch-up kit so you look radiant from ceremony to last dance.</p>
+            </div>
+            <div class="service-tag">Most Popular</div>
+          </div>
+          <div class="service-option" data-service="party" data-price="100">
+            <div class="service-radio"></div>
+            <div class="service-info">
+              <h3>Bridal Party</h3>
+              <div class="service-price">$100 <span style="font-size:15px;color:var(--color-stone)">/person</span></div>
+              <p>Gorgeous, coordinated looks for your entire party. Minimum 3 people.</p>
+            </div>
+          </div>
+          <div class="service-option" data-service="trial" data-price="100">
+            <div class="service-radio"></div>
+            <div class="service-info">
+              <h3>Trial Session</h3>
+              <div class="service-price">$100</div>
+              <p>A dedicated 2-hour session to perfect your wedding day look before the big day.</p>
+            </div>
+          </div>
+          <div class="service-option" data-service="engagement" data-price="175">
+            <div class="service-radio"></div>
+            <div class="service-info">
+              <h3>Engagement Session</h3>
+              <div class="service-price">$175</div>
+              <p>Natural glam for your engagement photos. Includes groom touch-up.</p>
+            </div>
+          </div>
         </div>
-
-        <!-- Square Appointments embed wrapper -->
-        <div id="square-appointments" class="reveal">
-          <!-- Start Square Appointments Embed Code -->
-          <script src='https://app.squareup.com/appointments/buyer/widget/75osb248riwlwc/LGKJV87PVQ78Q.js'></script>
-          <!-- End Square Appointments Embed Code -->
+        <div class="party-size-row" id="partySizeRow">
+          <label for="partySize">How many people?</label>
+          <input type="number" id="partySize" min="3" max="15" value="3" />
+          <span class="party-size-note">(minimum 3)</span>
         </div>
-
-      </div>
-    </section>
-
-
-    <!-- ══════════════════════════════════════════════════════
-         SECTION 4 — What Happens Next (4 Steps)
-         ══════════════════════════════════════════════════════ -->
-    <section class="steps-section" aria-labelledby="steps-heading">
-      <div class="container">
-
-        <div class="section-header reveal" style="text-align: center; margin-bottom: 48px;">
-          <span class="section-eyebrow">The Process</span>
-          <h2 id="steps-heading">What happens next</h2>
+        <div class="btn-row" style="justify-content:flex-end;">
+          <button class="btn-book primary" id="toStep2" disabled>Continue</button>
         </div>
-
-        <ol class="steps-list">
-
-          <li class="step-item reveal">
-            <div class="step-num" aria-hidden="true">1</div>
-            <div class="step-copy">
-              <h3>Choose your service and date</h3>
-              <p>
-                Browse available times directly in the widget above.
-                Select the service that matches your vision — from
-                Bridal Package to Trial Session.
-              </p>
-            </div>
-          </li>
-
-          <li class="step-item reveal">
-            <div class="step-num" aria-hidden="true">2</div>
-            <div class="step-copy">
-              <h3>Pay your $75 deposit securely via Square</h3>
-              <p>
-                Your deposit is processed safely through Square.
-                It's not an extra charge — it applies in full
-                toward your package on the day of your appointment.
-              </p>
-            </div>
-          </li>
-
-          <li class="step-item reveal">
-            <div class="step-num" aria-hidden="true">3</div>
-            <div class="step-copy">
-              <h3>Receive instant email confirmation</h3>
-              <p>
-                You'll get a booking confirmation straight to your
-                inbox with all your appointment details, what to
-                expect, and how to prepare.
-              </p>
-            </div>
-          </li>
-
-          <li class="step-item reveal">
-            <div class="step-num" aria-hidden="true">4</div>
-            <div class="step-copy">
-              <h3>Miriam will reach out within 24 hours</h3>
-              <p>
-                Expect a personal message from Miriam to start
-                the conversation about your vision, skin concerns,
-                wedding aesthetic, and day-of timeline.
-              </p>
-            </div>
-          </li>
-
-        </ol>
       </div>
-    </section>
 
-
-    <!-- ══════════════════════════════════════════════════════
-         SECTION 5 — Contact Alternative
-         ══════════════════════════════════════════════════════ -->
-    <section class="contact-alt" aria-label="Direct contact option">
-      <div class="container">
-        <p class="reveal">
-          Prefer to reach out directly?<br />
-          <a href="mailto:hello@cltmakeup.com">hello@cltmakeup.com</a>
-        </p>
+      <!-- STEP 2: Date & Time -->
+      <div class="booking-step" id="step2">
+        <h2 class="step-title">Pick a Date & Time</h2>
+        <p class="step-subtitle">Choose from Miriam's available appointment slots</p>
+        <div class="calendar-wrapper">
+          <div class="cal-header">
+            <span class="cal-month" id="calMonth"></span>
+            <div class="cal-nav">
+              <button id="calPrev">&#8249;</button>
+              <button id="calNext">&#8250;</button>
+            </div>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+        </div>
+        <div class="time-section" id="timeSection" style="display:none;">
+          <div class="time-label" id="timeLabel"></div>
+          <div id="timeContent"></div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-book back" id="backTo1">Back</button>
+          <button class="btn-book primary" id="toStep3" disabled>Continue</button>
+        </div>
       </div>
-    </section>
 
-  </main>
+      <!-- STEP 3: Details -->
+      <div class="booking-step" id="step3">
+        <h2 class="step-title">Your Details</h2>
+        <p class="step-subtitle">Tell us about you and your big day</p>
+        <div class="form-grid">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" placeholder="Your first name" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName" placeholder="Your last name" required />
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" placeholder="you@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" placeholder="(704) 555-0123" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="weddingDate">Wedding Date</label>
+            <input type="date" id="weddingDate" />
+          </div>
+          <div class="form-group">
+            <label for="venue">Wedding Venue</label>
+            <input type="text" id="venue" placeholder="e.g. The Asbury, Separk Mansion..." />
+          </div>
+          <div class="form-group">
+            <label for="notes">Anything else we should know?</label>
+            <textarea id="notes" placeholder="Skin concerns, inspiration photos, number of people in your bridal party..."></textarea>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-book back" id="backTo2">Back</button>
+          <button class="btn-book primary" id="toStep4">Continue</button>
+        </div>
+      </div>
 
+      <!-- STEP 4: Review & Pay -->
+      <div class="booking-step" id="step4">
+        <h2 class="step-title">Review & Confirm</h2>
+        <p class="step-subtitle">Double-check your details, then secure your booking</p>
+        <div class="review-card">
+          <h3>Booking Summary</h3>
+          <div class="review-row"><span class="review-label">Service</span><span class="review-value" id="revService">—</span></div>
+          <div class="review-row"><span class="review-label">Date</span><span class="review-value" id="revDate">—</span></div>
+          <div class="review-row"><span class="review-label">Time</span><span class="review-value" id="revTime">—</span></div>
+          <div class="review-row"><span class="review-label">Name</span><span class="review-value" id="revName">—</span></div>
+          <div class="review-row"><span class="review-label">Email</span><span class="review-value" id="revEmail">—</span></div>
+          <div class="review-divider"></div>
+          <div class="review-row"><span class="review-label">Service Total</span><span class="review-value" id="revTotal">—</span></div>
+          <div class="review-total"><span class="review-label">Deposit Due Today (50%)</span><span class="review-value" id="revDeposit">—</span></div>
+        </div>
+        <div class="deposit-note">
+          <strong>About your deposit:</strong> A 50% deposit is required to secure your booking.
+          The remaining balance is due on the day of your appointment. You'll receive a confirmation email
+          and calendar invite with all the details.
+        </div>
+        <div class="payment-section">
+          <h3>Payment Details</h3>
+          <div id="card-container"></div>
+          <div class="payment-error" id="paymentError"></div>
+        </div>
+        <div class="btn-row" style="flex-direction:column;">
+          <button class="btn-book pay" id="payBtn" disabled>Pay Deposit & Book</button>
+          <button class="btn-book back" id="backTo3" style="width:100%;text-align:center;">Back</button>
+        </div>
+      </div>
 
-  <!-- ══════════════════════════════════════════════════════
-       Footer
-       ══════════════════════════════════════════════════════ -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container">
-      <div class="footer-inner">
-
-        <div class="footer-brand">
-          <p class="footer-logo">CLT <span>MAKEUP</span></p>
-          <p class="footer-tagline">
-            Charlotte's luxury bridal makeup artist.<br />
-            cltmakeup.com
+      <!-- STEP 5: Confirmation -->
+      <div class="booking-step" id="step5">
+        <div class="confirmation">
+          <div class="confirm-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h2>You're <em>booked!</em></h2>
+          <p>A confirmation email and calendar invite are on their way to <strong id="confirmEmail"></strong>.</p>
+          <p>We can't wait to make your day beautiful.</p>
+          <div class="confirm-details" id="confirmDetails"></div>
+          <p style="font-size:13px; color:var(--color-stone); margin-top:24px;">
+            Questions? Reach out at <a href="mailto:hello@cltmakeup.com" style="color:var(--color-rose);">hello@cltmakeup.com</a>
           </p>
         </div>
-
-        <nav class="footer-nav" aria-label="Footer navigation">
-          <a href="index.html">Home</a>
-          <a href="services.html">Services</a>
-          <a href="about.html">About</a>
-          <a href="book.html">Book Now</a>
-        </nav>
-
-        <div class="footer-social">
-          <a href="https://instagram.com/cltmakeup"  target="_blank" rel="noopener noreferrer">Instagram @cltmakeup</a>
-          <a href="https://tiktok.com/@cltmakeup"    target="_blank" rel="noopener noreferrer">TikTok @cltmakeup</a>
-          <a href="https://pinterest.com/cltmakeup"  target="_blank" rel="noopener noreferrer">Pinterest @cltmakeup</a>
-          <a href="mailto:hello@cltmakeup.com">hello@cltmakeup.com</a>
-        </div>
-
       </div>
 
-      <p class="footer-bottom">
-        &copy; CLT Makeup 2026 &mdash; Charlotte, NC &mdash; All rights reserved.
-      </p>
+    </div>
+  </main>
+
+  <!-- Footer loaded from existing site structure -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-logo">CLT MAKEUP</div>
+      <nav class="footer-links">
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="book.html">Book</a>
+        <a href="mailto:hello@cltmakeup.com">Contact</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 CLT Makeup &middot; cltmakeup.com &middot; Charlotte, NC</p>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="js/nav.js"></script>
-  <script src="js/reveal.js"></script>
+  <script>
+    // ════════════════════════════════════════
+    // CLT Makeup — Production Booking System
+    // ════════════════════════════════════════
+
+    var API_BASE = "/.netlify/functions";
+    var SQUARE_APP_ID = "sq0idp-gSk8hfl9Ki9DGEssqxHJMQ";
+    var SQUARE_LOCATION_ID = "LGKJV87PVQ78Q";
+
+    var selectedService = null;
+    var selectedPrice = 0;
+    var selectedDate = null;
+    var selectedDateStr = null;
+    var selectedTime = null;
+    var selectedSlotStart = null;
+    var currentMonth = new Date().getMonth();
+    var currentYear = new Date().getFullYear();
+    var card = null; // Square card instance
+
+    var SERVICES = {
+      bridal:     { name: "Bridal Package", price: 250 },
+      party:      { name: "Bridal Party", price: 100 },
+      trial:      { name: "Trial Session", price: 100 },
+      engagement: { name: "Engagement Session", price: 175 },
+    };
+
+    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    var dayLabels = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+    // ── SERVICE SELECTION ──
+    document.querySelectorAll(".service-option").forEach(function(opt) {
+      opt.addEventListener("click", function() {
+        document.querySelectorAll(".service-option").forEach(function(o) { o.classList.remove("selected"); });
+        opt.classList.add("selected");
+        selectedService = opt.dataset.service;
+        selectedPrice = parseInt(opt.dataset.price);
+        document.getElementById("toStep2").disabled = false;
+
+        // Show party size input
+        var row = document.getElementById("partySizeRow");
+        if (selectedService === "party") {
+          row.classList.add("visible");
+        } else {
+          row.classList.remove("visible");
+        }
+      });
+    });
+
+    // ── STEP NAVIGATION ──
+    function showStep(n) {
+      document.querySelectorAll(".booking-step").forEach(function(s) { s.classList.remove("active"); });
+      document.getElementById("step" + n).classList.add("active");
+      document.querySelectorAll(".step").forEach(function(s, i) {
+        s.classList.remove("active", "completed");
+        if (i + 1 < n) s.classList.add("completed");
+        if (i + 1 === n) s.classList.add("active");
+      });
+      document.querySelectorAll(".step-line").forEach(function(l, i) {
+        l.classList.toggle("active", i + 1 < n);
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.getElementById("toStep2").addEventListener("click", function() { showStep(2); renderCalendar(); });
+    document.getElementById("backTo1").addEventListener("click", function() { showStep(1); });
+    document.getElementById("toStep3").addEventListener("click", function() { showStep(3); });
+    document.getElementById("backTo2").addEventListener("click", function() { showStep(2); });
+    document.getElementById("toStep4").addEventListener("click", function() {
+      // Validate required fields
+      var fn = document.getElementById("firstName").value.trim();
+      var ln = document.getElementById("lastName").value.trim();
+      var em = document.getElementById("email").value.trim();
+      if (!fn || !ln || !em) {
+        alert("Please fill in your name and email.");
+        return;
+      }
+      populateReview();
+      showStep(4);
+      initSquareCard();
+    });
+    document.getElementById("backTo3").addEventListener("click", function() { showStep(3); });
+
+    // ── CALENDAR ──
+    document.getElementById("calPrev").addEventListener("click", function() {
+      currentMonth--;
+      if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+      renderCalendar();
+    });
+    document.getElementById("calNext").addEventListener("click", function() {
+      currentMonth++;
+      if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+      renderCalendar();
+    });
+
+    function renderCalendar() {
+      var grid = document.getElementById("calGrid");
+      grid.innerHTML = "";
+      document.getElementById("calMonth").textContent = months[currentMonth] + " " + currentYear;
+
+      dayLabels.forEach(function(d) {
+        var el = document.createElement("div");
+        el.className = "cal-day-label";
+        el.textContent = d;
+        grid.appendChild(el);
+      });
+
+      var firstDay = new Date(currentYear, currentMonth, 1).getDay();
+      var daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+      var today = new Date();
+      var minDate = new Date();
+      minDate.setDate(minDate.getDate() + 7);
+      minDate.setHours(0, 0, 0, 0);
+
+      for (var i = 0; i < firstDay; i++) {
+        var empty = document.createElement("div");
+        empty.className = "cal-day empty";
+        grid.appendChild(empty);
+      }
+
+      for (var d = 1; d <= daysInMonth; d++) {
+        var el = document.createElement("div");
+        el.className = "cal-day";
+        el.textContent = d;
+        var thisDate = new Date(currentYear, currentMonth, d);
+
+        if (thisDate < minDate || thisDate.getDay() === 0) {
+          el.classList.add("disabled");
+        }
+
+        if (d === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
+          el.classList.add("today");
+        }
+
+        if (selectedDate && d === selectedDate.getDate() && currentMonth === selectedDate.getMonth() && currentYear === selectedDate.getFullYear()) {
+          el.classList.add("selected");
+        }
+
+        (function(day) {
+          if (!el.classList.contains("disabled")) {
+            el.addEventListener("click", function() {
+              selectedDate = new Date(currentYear, currentMonth, day);
+              var m = String(currentMonth + 1).padStart(2, "0");
+              var dd = String(day).padStart(2, "0");
+              selectedDateStr = currentYear + "-" + m + "-" + dd;
+              selectedTime = null;
+              selectedSlotStart = null;
+              document.getElementById("toStep3").disabled = true;
+              renderCalendar();
+              fetchTimeSlots();
+            });
+          }
+        })(d);
+
+        grid.appendChild(el);
+      }
+    }
+
+    // ── FETCH REAL AVAILABILITY ──
+    function fetchTimeSlots() {
+      var section = document.getElementById("timeSection");
+      section.style.display = "block";
+
+      var dateStr = selectedDate.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+      document.getElementById("timeLabel").textContent = "Available on " + dateStr;
+      document.getElementById("timeContent").innerHTML = '<div class="time-loading"><span class="spinner-inline"></span> Checking availability...</div>';
+
+      fetch(API_BASE + "/check-availability", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ date: selectedDateStr }),
+      })
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        if (data.error) {
+          document.getElementById("timeContent").innerHTML = '<div class="time-loading">' + data.error + '</div>';
+          return;
+        }
+        if (data.message && (!data.slots || data.slots.length === 0)) {
+          document.getElementById("timeContent").innerHTML = '<div class="time-loading">' + data.message + '</div>';
+          return;
+        }
+        renderTimeSlots(data.slots);
+      })
+      .catch(function(err) {
+        document.getElementById("timeContent").innerHTML = '<div class="time-loading">Unable to check availability. Please try again.</div>';
+      });
+    }
+
+    function renderTimeSlots(slots) {
+      var grid = document.createElement("div");
+      grid.className = "time-grid";
+
+      slots.forEach(function(slot) {
+        var el = document.createElement("div");
+        el.className = "time-slot";
+        el.textContent = slot.time;
+
+        if (!slot.available) {
+          el.classList.add("unavailable");
+        } else {
+          if (selectedTime === slot.time) el.classList.add("selected");
+          el.addEventListener("click", function() {
+            selectedTime = slot.time;
+            selectedSlotStart = slot.start;
+            document.getElementById("toStep3").disabled = false;
+            // Re-render to update selection
+            renderTimeSlots(slots);
+          });
+        }
+        grid.appendChild(el);
+      });
+
+      document.getElementById("timeContent").innerHTML = "";
+      document.getElementById("timeContent").appendChild(grid);
+    }
+
+    // ── REVIEW ──
+    function populateReview() {
+      var svc = SERVICES[selectedService];
+      var total = svc.price;
+      var serviceName = svc.name;
+
+      if (selectedService === "party") {
+        var ps = parseInt(document.getElementById("partySize").value) || 3;
+        if (ps < 3) ps = 3;
+        total = svc.price * ps;
+        serviceName = svc.name + " (" + ps + " people)";
+      }
+
+      selectedPrice = total;
+
+      document.getElementById("revService").textContent = serviceName;
+      document.getElementById("revDate").textContent = selectedDate
+        ? selectedDate.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })
+        : "—";
+      document.getElementById("revTime").textContent = selectedTime || "—";
+      document.getElementById("revName").textContent =
+        (document.getElementById("firstName").value + " " + document.getElementById("lastName").value).trim();
+      document.getElementById("revEmail").textContent = document.getElementById("email").value;
+      document.getElementById("revTotal").textContent = "$" + total;
+      document.getElementById("revDeposit").textContent = "$" + (total / 2);
+    }
+
+    // ── SQUARE WEB PAYMENTS SDK ──
+    async function initSquareCard() {
+      if (card) {
+        document.getElementById("payBtn").disabled = false;
+        return; // Already initialized
+      }
+
+      try {
+        var payments = window.Square.payments(SQUARE_APP_ID, SQUARE_LOCATION_ID);
+        card = await payments.card();
+        await card.attach("#card-container");
+        document.getElementById("payBtn").disabled = false;
+      } catch (err) {
+        console.error("Square init error:", err);
+        document.getElementById("paymentError").style.display = "block";
+        document.getElementById("paymentError").textContent = "Unable to load payment form. Please refresh and try again.";
+      }
+    }
+
+    // ── PAY & BOOK ──
+    document.getElementById("payBtn").addEventListener("click", async function() {
+      var btn = document.getElementById("payBtn");
+      var errEl = document.getElementById("paymentError");
+      errEl.style.display = "none";
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner-inline"></span> Processing...';
+
+      try {
+        // Tokenize the card
+        var result = await card.tokenize();
+        if (result.status !== "OK") {
+          throw new Error(result.errors ? result.errors[0].message : "Card verification failed");
+        }
+
+        var sourceId = result.token;
+
+        // Call create-booking
+        var ps = selectedService === "party" ? (parseInt(document.getElementById("partySize").value) || 3) : null;
+
+        var bookingData = {
+          service: selectedService,
+          date: selectedDateStr,
+          time: selectedTime,
+          slotStart: selectedSlotStart,
+          firstName: document.getElementById("firstName").value.trim(),
+          lastName: document.getElementById("lastName").value.trim(),
+          email: document.getElementById("email").value.trim(),
+          phone: document.getElementById("phone").value.trim(),
+          weddingDate: document.getElementById("weddingDate").value,
+          venue: document.getElementById("venue").value.trim(),
+          notes: document.getElementById("notes").value.trim(),
+          sourceId: sourceId,
+          partySize: ps,
+        };
+
+        var res = await fetch(API_BASE + "/create-booking", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(bookingData),
+        });
+
+        var data = await res.json();
+
+        if (!res.ok || data.error) {
+          throw new Error(data.error || "Booking failed");
+        }
+
+        // Success — show confirmation
+        showConfirmation(data.confirmation);
+
+      } catch (err) {
+        errEl.style.display = "block";
+        errEl.textContent = err.message || "Something went wrong. Please try again.";
+        btn.disabled = false;
+        btn.textContent = "Pay Deposit & Book";
+      }
+    });
+
+    function showConfirmation(conf) {
+      document.getElementById("confirmEmail").textContent = conf.email;
+      document.getElementById("confirmDetails").innerHTML =
+        '<div class="review-row"><span class="review-label">Service</span><span class="review-value">' + conf.service + '</span></div>' +
+        '<div class="review-row"><span class="review-label">Date</span><span class="review-value">' + conf.date + '</span></div>' +
+        '<div class="review-row"><span class="review-label">Time</span><span class="review-value">' + conf.time + '</span></div>' +
+        '<div class="review-row"><span class="review-label">Deposit Paid</span><span class="review-value" style="color:var(--color-rose);font-weight:600;">' + conf.depositCharged + '</span></div>' +
+        '<div class="review-row"><span class="review-label">Remaining</span><span class="review-value">' + conf.remainingBalance + '</span></div>' +
+        (conf.receiptUrl ? '<div style="text-align:center;margin-top:12px;"><a href="' + conf.receiptUrl + '" target="_blank" style="color:var(--color-rose);font-size:13px;">View Receipt</a></div>' : '');
+
+      document.getElementById("progressBar").style.display = "none";
+      showStep(5);
+    }
+  </script>
 
 </body>
 </html>

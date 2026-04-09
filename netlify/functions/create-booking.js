@@ -10,10 +10,10 @@ var CALENDAR_ID = process.env.GOOGLE_CALENDAR_ID || "miriam@cltmakeup.com";
 var TIMEZONE = "America/New_York";
 
 var SERVICES = {
-  bridal:     { name: "Bridal Package", price: 25000, duration: 120 },      // price in cents
+  bridal:     { name: "Bridal Package", price: 25000, duration: 120 },
   party:      { name: "Bridal Party (per person)", price: 10000, duration: 90 },
   trial:      { name: "Trial Session", price: 10000, duration: 120 },
-  engagement: { name: "Engagement Session", price: 20000, duration: 90 },
+  engagement: { name: "Engagement Session", price: 17500, duration: 90 },
 };
 
 exports.handler = async (event) => {
@@ -33,23 +33,20 @@ exports.handler = async (event) => {
 
   try {
     var body = JSON.parse(event.body);
-    var {
-      service,       // "bridal", "party", "trial", "engagement"
-      date,          // "2026-05-15"
-      time,          // "10:00 AM"
-      slotStart,     // ISO string from check-availability
-      firstName,
-      lastName,
-      email,
-      phone,
-      weddingDate,
-      venue,
-      notes,
-      sourceId,      // Square payment token from Web Payments SDK
-      partySize,     // only for bridal party
-    } = body;
+    var service = body.service;
+    var date = body.date;
+    var time = body.time;
+    var slotStart = body.slotStart;
+    var firstName = body.firstName;
+    var lastName = body.lastName;
+    var email = body.email;
+    var phone = body.phone;
+    var weddingDate = body.weddingDate;
+    var venue = body.venue;
+    var notes = body.notes;
+    var sourceId = body.sourceId;
+    var partySize = body.partySize;
 
-    // ── Validate required fields ──
     if (!service || !date || !time || !firstName || !lastName || !email || !sourceId) {
       return {
         statusCode: 400,
@@ -63,7 +60,6 @@ exports.handler = async (event) => {
       return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid service" }) };
     }
 
-    // Calculate deposit (50%)
     var totalCents = svc.price;
     if (service === "party" && partySize) {
       totalCents = svc.price * parseInt(partySize);
@@ -115,16 +111,20 @@ exports.handler = async (event) => {
     // ── Step 2: Create Google Calendar event ──
     var accessToken = await getGoogleAccessToken();
 
-    // Parse the slot time
     var eventStart = slotStart || buildEventStart(date, time);
     var eventStartDate = new Date(eventStart);
     var eventEndDate = new Date(eventStartDate);
     eventEndDate.setMinutes(eventEndDate.getMinutes() + svc.duration);
 
+    var serviceName = svc.name;
+    if (service === "party" && partySize) {
+      serviceName = "Bridal Party (" + partySize + " people)";
+    }
+
     var calEvent = {
-      summary: "CLT Makeup — " + svc.name + " — " + firstName + " " + lastName,
+      summary: "CLT Makeup — " + serviceName + " — " + firstName + " " + lastName,
       description: [
-        "Service: " + svc.name,
+        "Service: " + serviceName,
         "Client: " + firstName + " " + lastName,
         "Email: " + email,
         "Phone: " + (phone || "Not provided"),
@@ -151,8 +151,8 @@ exports.handler = async (event) => {
       reminders: {
         useDefault: false,
         overrides: [
-          { method: "email", minutes: 1440 }, // 24 hours before
-          { method: "popup", minutes: 60 },    // 1 hour before
+          { method: "email", minutes: 1440 },
+          { method: "popup", minutes: 60 },
         ],
       },
     };
@@ -172,13 +172,10 @@ exports.handler = async (event) => {
     );
 
     var calCreated = true;
-    var calError = null;
-
     if (!calRes.ok) {
       calCreated = false;
-      calError = await calRes.text();
-      console.log("Calendar event creation failed:", calError);
-      // Don't fail the whole booking — payment went through
+      var calErr = await calRes.text();
+      console.log("Calendar event creation failed:", calErr);
     }
 
     // ── Step 3: Return confirmation ──
@@ -188,7 +185,7 @@ exports.handler = async (event) => {
       body: JSON.stringify({
         success: true,
         confirmation: {
-          service: svc.name,
+          service: serviceName,
           date: date,
           time: time,
           name: firstName + " " + lastName,
@@ -212,29 +209,19 @@ exports.handler = async (event) => {
   }
 };
 
-// ── Helper: build event start from date + time string ──
 function buildEventStart(date, timeStr) {
-  // timeStr like "10:00 AM" or "2:30 PM"
   var parts = timeStr.match(/(\d+):(\d+)\s*(AM|PM)/i);
   if (!parts) return date + "T10:00:00";
-
   var hour = parseInt(parts[1]);
   var min = parseInt(parts[2]);
   var ampm = parts[3].toUpperCase();
-
   if (ampm === "PM" && hour !== 12) hour += 12;
   if (ampm === "AM" && hour === 12) hour = 0;
-
-  var h = String(hour).padStart(2, "0");
-  var m = String(min).padStart(2, "0");
-
-  return date + "T" + h + ":" + m + ":00";
+  return date + "T" + String(hour).padStart(2, "0") + ":" + String(min).padStart(2, "0") + ":00";
 }
 
-// ── Google Auth via Service Account ──
 async function getGoogleAccessToken() {
   var keyData = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_KEY);
-
   var header = { alg: "RS256", typ: "JWT" };
   var now = Math.floor(Date.now() / 1000);
   var claim = {
@@ -244,39 +231,28 @@ async function getGoogleAccessToken() {
     exp: now + 3600,
     iat: now,
   };
-
   var headerB64 = base64url(JSON.stringify(header));
   var claimB64 = base64url(JSON.stringify(claim));
   var unsignedToken = headerB64 + "." + claimB64;
-
   var sign = crypto.createSign("RSA-SHA256");
   sign.update(unsignedToken);
   var signature = sign.sign(keyData.private_key, "base64")
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=+$/, "");
-
+    .replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
   var jwt = unsignedToken + "." + signature;
-
   var tokenRes = await fetch("https://oauth2.googleapis.com/token", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: "grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=" + jwt,
   });
-
   if (!tokenRes.ok) {
     var errText = await tokenRes.text();
     throw new Error("Google auth failed: " + errText);
   }
-
   var tokenData = await tokenRes.json();
   return tokenData.access_token;
 }
 
 function base64url(str) {
-  return Buffer.from(str)
-    .toString("base64")
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=+$/, "");
+  return Buffer.from(str).toString("base64")
+    .replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
