@@ -5,7 +5,7 @@
 - **Domain:** cltmakeup.com
 - **Tagline:** Charlotte's luxury bridal makeup artist
 - **Location:** Charlotte, NC
-- **Instagram / TikTok / Pinterest:** @cltmakeup
+- **Instagram:** @clt_makeup1
 - **Market:** Luxury bridal — brides aged 25–38, Charlotte + 30-mile radius
 - **Tone:** Warm, elevated, confident, Charlotte-proud. Never clinical or corporate.
 
@@ -89,9 +89,9 @@ Sections (in order):
 4. **Services teaser** — 3 cards: Bridal Package / Bridal Party / Trial Session, each with name + 1-line description + "Learn more" link → /services.html
 5. **About teaser** — left: headshot placeholder, right: 2–3 lines of artist bio + "Meet the artist" link → /about.html
 6. **Testimonials** — 3 bride quotes (placeholder text), soft blush background
-7. **Instagram strip** — 6 placeholder image boxes labeled "@cltmakeup on Instagram", link to instagram.com/cltmakeup
+7. **Instagram strip** — 6 placeholder image boxes labeled "@clt_makeup1 on Instagram", link to instagram.com/clt_makeup1
 8. **CTA banner** — "Ready to book your bridal look?" + button → /book.html
-9. **Footer** — logo, nav links, @cltmakeup social links, © CLT Makeup 2026, cltmakeup.com
+9. **Footer** — logo, nav links, @clt_makeup1 social links, © CLT Makeup 2026, cltmakeup.com
 
 ### services.html — Services
 - Full pricing menu with 4 packages:
@@ -119,7 +119,7 @@ Sections (in order):
   - Add comment: `// Replace with your Stripe publishable key: pk_live_...`
   - Add comment: `// Replace with your Stripe price ID: price_...`
 - After payment: show confirmation message "You're booked! Check your email for details."
-- Contact alternative: "Prefer to reach out directly? Email hello@cltmakeup.com"
+- Contact alternative: "Prefer to reach out directly? Email miriam@cltmakeup.com"
 
 ## Coding Standards
 - Semantic HTML5 — use `<header>`, `<main>`, `<section>`, `<footer>`, `<nav>` correctly
