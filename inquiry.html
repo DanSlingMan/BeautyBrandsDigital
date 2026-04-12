@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Inquire about luxury bridal makeup with CLT Makeup in Charlotte, NC. Tell us about your wedding and we'll get back to you within 24 hours.">
+  <meta property="og:title" content="Wedding Inquiry — CLT Makeup">
+  <meta property="og:description" content="Start the conversation about your wedding day glam. CLT Makeup — Charlotte's luxury bridal makeup artist.">
+  <title>Wedding Inquiry — CLT Makeup | Charlotte's Luxury Bridal Makeup Artist</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    /* ══ INQUIRY PAGE STYLES ══ */
+    .inquiry-hero {
+      text-align: center;
+      padding: 56px 24px 40px;
+      background: var(--color-charcoal);
+    }
+    .inquiry-hero h1 {
+      font-family: var(--font-heading, 'Cormorant Garamond', serif);
+      font-weight: 300;
+      font-size: 38px;
+      color: var(--color-white);
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+    }
+    .inquiry-hero h1 em {
+      font-style: italic;
+      color: var(--color-blush-mid);
+    }
+    .inquiry-hero p {
+      font-size: 14px;
+      color: var(--color-blush-mid);
+      letter-spacing: 0.06em;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    @media (min-width: 768px) {
+      .inquiry-hero { padding: 72px 40px 52px; }
+      .inquiry-hero h1 { font-size: 56px; }
+      .inquiry-hero p { font-size: 15px; }
+    }
+
+    /* ── Form Container ── */
+    .inquiry-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .inquiry-intro {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .inquiry-intro h2 {
+      font-family: var(--font-heading, 'Cormorant Garamond', serif);
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--color-charcoal);
+      margin-bottom: 8px;
+    }
+
+    .inquiry-intro p {
+      font-size: 15px;
+      color: var(--color-stone);
+      line-height: 1.6;
+    }
+
+    /* ── Form Fields ── */
+    .inquiry-form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .form-row-2 { grid-template-columns: 1fr 1fr; }
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-stone);
+      margin-bottom: 6px;
+    }
+
+    .form-group label .required {
+      color: var(--color-rose);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 14px 16px;
+      font-family: var(--font-body, 'DM Sans', sans-serif);
+      font-size: 15px;
+      border: 1.5px solid var(--color-blush-mid);
+      background: var(--color-white);
+      color: var(--color-charcoal);
+      outline: none;
+      transition: border-color 0.2s ease;
+      border-radius: 0;
+      -webkit-appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--color-rose);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--color-stone);
+      opacity: 0.5;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-group select {
+      cursor: pointer;
+      color: var(--color-charcoal);
+    }
+
+    /* ── Section Dividers ── */
+    .form-section-title {
+      font-family: var(--font-heading, 'Cormorant Garamond', serif);
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--color-charcoal);
+      padding-top: 12px;
+      border-top: 1px solid var(--color-blush);
+    }
+
+    /* ── How did you hear about us ── */
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .checkbox-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 10px 16px;
+      border: 1.5px solid var(--color-blush-mid);
+      background: var(--color-white);
+      transition: border-color 0.2s ease, background 0.2s ease;
+      font-size: 14px;
+      color: var(--color-charcoal);
+    }
+
+    .checkbox-option:hover {
+      border-color: var(--color-rose-light, #e8a0b8);
+    }
+
+    .checkbox-option.selected {
+      border-color: var(--color-rose);
+      background: var(--color-blush);
+    }
+
+    .checkbox-option input {
+      display: none;
+    }
+
+    .checkbox-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 2px;
+      border: 1.5px solid var(--color-blush-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .checkbox-dot::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 1px;
+      background: var(--color-rose);
+      transform: scale(0);
+      transition: transform 0.15s ease;
+    }
+
+    .checkbox-option.selected .checkbox-dot {
+      border-color: var(--color-rose);
+    }
+
+    .checkbox-option.selected .checkbox-dot::after {
+      transform: scale(1);
+    }
+
+    /* ── Submit Button ── */
+    .submit-row {
+      text-align: center;
+      padding-top: 8px;
+    }
+
+    .btn-submit {
+      font-family: var(--font-body, 'DM Sans', sans-serif);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 16px 56px;
+      border: none;
+      cursor: pointer;
+      background: var(--color-rose);
+      color: var(--color-white);
+      transition: background 0.25s ease, transform 0.2s ease;
+    }
+
+    .btn-submit:hover {
+      background: var(--color-rose-dark, #b94069);
+      transform: scale(1.02);
+    }
+
+    .btn-submit:disabled {
+      background: var(--color-stone);
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .spinner-inline {
+      display: inline-block; width: 14px; height: 14px;
+      border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff;
+      border-radius: 50%; animation: spin 0.6s linear infinite;
+      vertical-align: middle; margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .submit-note {
+      font-size: 13px;
+      color: var(--color-stone);
+      margin-top: 16px;
+      line-height: 1.5;
+    }
+
+    /* ── Success State ── */
+    .inquiry-success {
+      display: none;
+      text-align: center;
+      padding: 60px 24px;
+    }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--color-blush);
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .success-icon svg {
+      width: 36px;
+      height: 36px;
+      stroke: #5a9a6e;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .inquiry-success h2 {
+      font-family: var(--font-heading, 'Cormorant Garamond', serif);
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--color-charcoal);
+      margin-bottom: 12px;
+    }
+
+    .inquiry-success h2 em {
+      font-style: italic;
+      color: var(--color-rose);
+    }
+
+    .inquiry-success p {
+      font-size: 15px;
+      color: var(--color-stone);
+      max-width: 440px;
+      margin: 0 auto 12px;
+      line-height: 1.6;
+    }
+
+    /* ── Error ── */
+    .form-error {
+      display: none;
+      padding: 14px 20px;
+      background: #fef2f2;
+      border-left: 3px solid #E53935;
+      font-size: 14px;
+      color: #b71c1c;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">CLT <span>MAKEUP</span></a>
+      <nav class="nav-links">
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="book.html" class="btn btn-primary">Book Now</a>
+      </nav>
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="mobile-menu">
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="book.html">Book Now</a>
+  </div>
+
+  <main>
+    <!-- Hero -->
+    <div class="inquiry-hero">
+      <h1>Wedding Makeup <em>Inquiry</em></h1>
+      <p>Not ready to book just yet? Tell us about your big day and we'll be in touch within 24 hours.</p>
+    </div>
+
+    <div class="inquiry-container">
+
+      <div class="inquiry-intro">
+        <h2>Let's start the conversation</h2>
+        <p>Fill out the details below so Miriam can learn about your vision, your timeline, and how CLT Makeup can make your day unforgettable.</p>
+      </div>
+
+      <div class="form-error" id="formError"></div>
+
+      <!-- Inquiry Form -->
+      <div id="inquiryFormWrapper">
+        <div class="inquiry-form" id="inquiryForm">
+
+          <!-- About You -->
+          <div class="form-section-title">About You</div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>First Name <span class="required">*</span></label>
+              <input type="text" id="inqFirstName" placeholder="Your first name" required />
+            </div>
+            <div class="form-group">
+              <label>Last Name <span class="required">*</span></label>
+              <input type="text" id="inqLastName" placeholder="Your last name" required />
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Email <span class="required">*</span></label>
+              <input type="email" id="inqEmail" placeholder="you@email.com" required />
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="tel" id="inqPhone" placeholder="(704) 555-0123" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Instagram Handle</label>
+            <input type="text" id="inqInstagram" placeholder="@yourhandle" />
+          </div>
+
+          <!-- Wedding Details -->
+          <div class="form-section-title">Wedding Details</div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Wedding Date <span class="required">*</span></label>
+              <input type="date" id="inqWeddingDate" required />
+            </div>
+            <div class="form-group">
+              <label>Ceremony Start Time</label>
+              <input type="text" id="inqCeremonyTime" placeholder="e.g. 4:00 PM" />
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>Venue Name</label>
+              <input type="text" id="inqVenue" placeholder="e.g. The Asbury, Separk Mansion..." />
+            </div>
+            <div class="form-group">
+              <label>Venue City</label>
+              <input type="text" id="inqVenueCity" placeholder="e.g. Charlotte, NC" />
+            </div>
+          </div>
+
+          <!-- Services Needed -->
+          <div class="form-section-title">Services You're Interested In</div>
+
+          <div class="form-group">
+            <label>What services do you need? <span class="required">*</span></label>
+            <select id="inqService">
+              <option value="" disabled selected>Select a service...</option>
+              <option value="Bridal Package ($250)">Bridal Package — $250</option>
+              <option value="Bridal Party ($100/person)">Bridal Party — $100/person</option>
+              <option value="Trial Session ($100)">Trial Session — $100</option>
+              <option value="Engagement Session ($175)">Engagement Session — $175</option>
+              <option value="Multiple services">I need multiple services</option>
+              <option value="Not sure yet">Not sure yet — need guidance</option>
+            </select>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label>How many people need makeup?</label>
+              <input type="text" id="inqPartySize" placeholder="e.g. Bride + 4 bridesmaids" />
+            </div>
+            <div class="form-group">
+              <label>Do you need hair styling too?</label>
+              <select id="inqHair">
+                <option value="" disabled selected>Select...</option>
+                <option value="Yes">Yes — I need hair too</option>
+                <option value="No">No — just makeup</option>
+                <option value="Maybe">Maybe — still deciding</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Vision -->
+          <div class="form-section-title">Your Vision</div>
+
+          <div class="form-group">
+            <label>Describe your ideal wedding day look</label>
+            <textarea id="inqVision" placeholder="Soft and romantic? Bold and glamorous? Natural and dewy? Share your Pinterest board, celebrity inspo, or just describe the vibe you're going for..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Anything else Miriam should know?</label>
+            <textarea id="inqNotes" placeholder="Skin type, allergies, concerns, special requests, timeline constraints — anything that'll help us prepare for your day."></textarea>
+          </div>
+
+          <!-- How did you hear about us -->
+          <div class="form-section-title">One Last Thing</div>
+
+          <div class="form-group">
+            <label>How did you find CLT Makeup?</label>
+            <div class="checkbox-group" id="referralGroup">
+              <label class="checkbox-option" data-value="Instagram">
+                <input type="checkbox" /><div class="checkbox-dot"></div>Instagram
+              </label>
+              <label class="checkbox-option" data-value="TikTok">
+                <input type="checkbox" /><div class="checkbox-dot"></div>TikTok
+              </label>
+              <label class="checkbox-option" data-value="Google">
+                <input type="checkbox" /><div class="checkbox-dot"></div>Google
+              </label>
+              <label class="checkbox-option" data-value="Wedding Planner">
+                <input type="checkbox" /><div class="checkbox-dot"></div>Wedding Planner
+              </label>
+              <label class="checkbox-option" data-value="Friend/Family">
+                <input type="checkbox" /><div class="checkbox-dot"></div>Friend / Family
+              </label>
+              <label class="checkbox-option" data-value="The Knot/WeddingWire">
+                <input type="checkbox" /><div class="checkbox-dot"></div>The Knot / WeddingWire
+              </label>
+              <label class="checkbox-option" data-value="Other">
+                <input type="checkbox" /><div class="checkbox-dot"></div>Other
+              </label>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="submit-row">
+            <button class="btn-submit" id="submitBtn">Send Inquiry</button>
+            <p class="submit-note">Miriam personally reads every inquiry and will get back to you within 24 hours.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Success Message -->
+      <div class="inquiry-success" id="successMessage">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h2>Inquiry <em>received!</em></h2>
+        <p>Thank you for reaching out. Miriam will review your details and get back to you within 24 hours.</p>
+        <p>In the meantime, follow along on <a href="https://instagram.com/clt_makeup1" style="color:var(--color-rose);">@clt_makeup1</a> for bridal inspiration.</p>
+        <p style="margin-top:24px;"><a href="index.html" style="color:var(--color-rose); font-size:13px; letter-spacing:0.06em; text-transform:uppercase;">Back to Homepage</a></p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-logo">CLT MAKEUP</div>
+      <nav class="footer-links">
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="book.html">Book</a>
+        <a href="mailto:miriam@cltmakeup.com">Contact</a>
+      </nav>
+      <p class="footer-copy">&copy; 2026 CLT Makeup &middot; cltmakeup.com &middot; Charlotte, NC</p>
+    </div>
+  </footer>
+
+  <script src="js/nav.js"></script>
+  <script>
+    // ── Checkbox toggle ──
+    document.querySelectorAll(".checkbox-option").forEach(function(opt) {
+      opt.addEventListener("click", function(e) {
+        e.preventDefault();
+        opt.classList.toggle("selected");
+      });
+    });
+
+    // ── Form submission via Netlify Forms ──
+    document.getElementById("submitBtn").addEventListener("click", async function() {
+      var btn = this;
+      var errEl = document.getElementById("formError");
+      errEl.style.display = "none";
+
+      // Validate required fields
+      var firstName = document.getElementById("inqFirstName").value.trim();
+      var lastName = document.getElementById("inqLastName").value.trim();
+      var email = document.getElementById("inqEmail").value.trim();
+      var weddingDate = document.getElementById("inqWeddingDate").value;
+      var service = document.getElementById("inqService").value;
+
+      if (!firstName || !lastName || !email || !weddingDate || !service) {
+        errEl.textContent = "Please fill in all required fields (marked with *).";
+        errEl.style.display = "block";
+        errEl.scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+
+      // Gather referral sources
+      var referrals = [];
+      document.querySelectorAll(".checkbox-option.selected").forEach(function(opt) {
+        referrals.push(opt.dataset.value);
+      });
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner-inline"></span> Sending...';
+
+      // Build form data for Netlify Forms
+      var formData = new URLSearchParams();
+      formData.append("form-name", "wedding-inquiry");
+      formData.append("firstName", firstName);
+      formData.append("lastName", lastName);
+      formData.append("email", email);
+      formData.append("phone", document.getElementById("inqPhone").value.trim());
+      formData.append("instagram", document.getElementById("inqInstagram").value.trim());
+      formData.append("weddingDate", weddingDate);
+      formData.append("ceremonyTime", document.getElementById("inqCeremonyTime").value.trim());
+      formData.append("venue", document.getElementById("inqVenue").value.trim());
+      formData.append("venueCity", document.getElementById("inqVenueCity").value.trim());
+      formData.append("service", service);
+      formData.append("partySize", document.getElementById("inqPartySize").value.trim());
+      formData.append("hair", document.getElementById("inqHair").value || "");
+      formData.append("vision", document.getElementById("inqVision").value.trim());
+      formData.append("notes", document.getElementById("inqNotes").value.trim());
+      formData.append("referral", referrals.join(", "));
+
+      try {
+        var res = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: formData.toString(),
+        });
+
+        if (!res.ok) throw new Error("Submission failed");
+
+        // Show success
+        document.getElementById("inquiryFormWrapper").style.display = "none";
+        document.querySelector(".inquiry-intro").style.display = "none";
+        document.getElementById("successMessage").style.display = "block";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+      } catch (err) {
+        errEl.textContent = "Something went wrong. Please try again or email us directly at miriam@cltmakeup.com.";
+        errEl.style.display = "block";
+        btn.disabled = false;
+        btn.textContent = "Send Inquiry";
+      }
+    });
+  </script>
+
+  <!-- Hidden form for Netlify Forms detection -->
+  <form name="wedding-inquiry" netlify netlify-honeypot="bot-field" hidden>
+    <input name="bot-field" />
+    <input name="firstName" />
+    <input name="lastName" />
+    <input name="email" />
+    <input name="phone" />
+    <input name="instagram" />
+    <input name="weddingDate" />
+    <input name="ceremonyTime" />
+    <input name="venue" />
+    <input name="venueCity" />
+    <input name="service" />
+    <input name="partySize" />
+    <input name="hair" />
+    <textarea name="vision"></textarea>
+    <textarea name="notes"></textarea>
+    <input name="referral" />
+  </form>
+
+</body>
+</html>
