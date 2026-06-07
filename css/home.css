@@ -228,9 +228,10 @@
   gap: 24px;
 }
 
+/* 2×2 grid fits the four client reviews evenly on tablet and up */
 @media (min-width: 768px) {
   .testimonials-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
