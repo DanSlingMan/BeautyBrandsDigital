@@ -300,6 +300,13 @@
   transition: opacity var(--transition-fast), transform var(--transition-fast);
 }
 
+/* Real feed images (swapped in by js/instagram.js) fill their square tile */
+img.instagram-img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
 .instagram-item a:hover .instagram-img {
   opacity: 0.85;
   transform: scale(1.02);

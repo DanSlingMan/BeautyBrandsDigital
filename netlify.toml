@@ -1,0 +1,10 @@
+# Netlify configuration for cltmakeup.com
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Refresh the Instagram access token on the 1st and 15th of every month
+# (tokens last 60 days, so this keeps them perpetually fresh)
+[functions."instagram-refresh"]
+  schedule = "0 6 1,15 * *"
