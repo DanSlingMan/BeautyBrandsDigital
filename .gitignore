@@ -1,0 +1,12 @@
+# Secrets — never commit credentials or API keys
+keys/
+
+# Local working folders not part of the deployed site
+photos/
+Reviews/
+.claude/
+
+# OS / editor noise
+Thumbs.db
+.DS_Store
+desktop.ini
